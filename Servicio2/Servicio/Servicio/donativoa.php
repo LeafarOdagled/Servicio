@@ -805,12 +805,10 @@
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Integrante 1: </label><input name="i1" id="exampleAddress"  type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Integrante 2: </label><input name="i2" id="exampleAddress"  type="text" class="form-control"></div>
 
-                    
-                    <div class="position-relative form-group"><label for="exampleSelect" class="">Número de asesores</label><select name="asesores" id="exampleSelect" class="form-control">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                    </select></div>
+                    Escriba los asesores que formaron parte de su TT. De no ocupar un espacio, puede dejarlo en blanco:
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 1:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 2:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 3:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
                     
                 </div>
                     
@@ -850,13 +848,11 @@
                     </div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Programa académico</label><input name="pacademico" id="exampleAddress"  type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo de material que se dona</label><input name="tipo" id="exampleAddress"  type="text" class="form-control"></div>
-                    
-                    <div class="position-relative form-group"><label for="exampleSelect" class="">Número de asesores</label><select name="asesores" id="exampleSelect" class="form-control">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                    </select></div>
-                    
+                    <!-- esto es para los asesores-->
+                    Escriba los asesores que formaron parte de su TT. De no ocupar un espacio, puede dejarlo en blanco:
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 1:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 2:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 3:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
                 </div>
                     
             

@@ -18,10 +18,10 @@ if($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
     if($row['Contra'] ==  $pass){
         
         $_SESSION['Usuario'] = $usuario;
-        
+        $fecha=date('y-m-j');
 
         $consultar="INSERT INTO donativo(Titulo, Autor, ISBN, Pie, id_usuario ) VALUES
-        ('".$titulo."','".$autor."', '".$ISBN."', '".$pie."', '".$row['id_usuario']."' );"; 
+        ('".$titulo."','".$autor."', '".$ISBN."', '".$pie."', '".$row['id_usuario']."', '".$fecha."');"; 
         $result2= mysqli_query($co,$consultar) or die('No consulta');
         
         header("Location:donativob.php?numerobol=".$usuario."");
