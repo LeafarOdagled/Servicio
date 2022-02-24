@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-01-2022 a las 01:07:23
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.10
+-- Tiempo de generación: 24-02-2022 a las 17:32:57
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `constancia`
+--
+
+CREATE TABLE `constancia` (
+  `id_constancia` int(5) NOT NULL,
+  `FechaExpide` date NOT NULL,
+  `FechaAcepta` date NOT NULL,
+  `Estado` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `constancia`
+--
+
+INSERT INTO `constancia` (`id_constancia`, `FechaExpide`, `FechaAcepta`, `Estado`) VALUES
+(1, '0000-00-00', '0000-00-00', 'aprobado');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `donativo`
 --
 
@@ -33,15 +53,25 @@ CREATE TABLE `donativo` (
   `Autor` varchar(25) NOT NULL,
   `ISBN` varchar(15) NOT NULL,
   `Pie` varchar(15) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `id_usuario` int(11) NOT NULL,
+  `Fecha` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `donativo`
 --
 
-INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `Pie`, `id_usuario`) VALUES
-(1, 'sdfsd', 'sfad', 'sfdsf', '', 2);
+INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `Pie`, `id_usuario`, `Fecha`) VALUES
+(1, 'sdfsd', 'sfad', 'sfdsf', '', 2, '0000-00-00'),
+(2, 'sdfsd', 'dfsdf', 'sfdsf', 'dffd', 2, '0000-00-00'),
+(3, 'sdfsd', 'dfsdf', 'dfasd', 'sdfsdf', 2, '0000-00-00'),
+(4, 'sdfsd', 'dfsdf', 'sfdsf', '1sfad', 2, '0000-00-00'),
+(5, 'sdfsd', 'dfsdf', 'sfdsf', '1sfad', 2, '0000-00-00'),
+(6, 'sdfsd', 'dfsdf', 'sfdsf', 'sdfsdf', 2, '0000-00-00'),
+(7, 'sdfsd', 'dfsdf', 'sfdsf', 'dffd', 2, '0000-00-00'),
+(8, 'sdfsd', 'sfad', 'sfdsf', 'sdfsdf', 2, '0000-00-00'),
+(9, 'sdfsd', 'sfad', 'sfdsf', '1sfad', 2, '2026-01-22'),
+(10, 'sdfsd', 'sfad', 'sfdsf', 'dffd', 2, '2022-01-26');
 
 -- --------------------------------------------------------
 
@@ -127,6 +157,12 @@ INSERT INTO `usuarioad` (`id_admin`, `Nombre`, `ApellidoP`, `ApellidoM`, `Usuari
 --
 
 --
+-- Indices de la tabla `constancia`
+--
+ALTER TABLE `constancia`
+  ADD PRIMARY KEY (`id_constancia`);
+
+--
 -- Indices de la tabla `donativo`
 --
 ALTER TABLE `donativo`
@@ -158,10 +194,16 @@ ALTER TABLE `usuarioad`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `constancia`
+--
+ALTER TABLE `constancia`
+  MODIFY `id_constancia` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `donativo`
 --
 ALTER TABLE `donativo`
-  MODIFY `ID_DonB` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_DonB` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `donativoa`
