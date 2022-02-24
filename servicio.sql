@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-02-2022 a las 17:32:57
+-- Tiempo de generación: 24-02-2022 a las 18:03:37
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -54,24 +54,25 @@ CREATE TABLE `donativo` (
   `ISBN` varchar(15) NOT NULL,
   `Pie` varchar(15) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `Fecha` date NOT NULL DEFAULT current_timestamp()
+  `Fecha` date NOT NULL DEFAULT current_timestamp(),
+  `FechaAceptado` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `donativo`
 --
 
-INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `Pie`, `id_usuario`, `Fecha`) VALUES
-(1, 'sdfsd', 'sfad', 'sfdsf', '', 2, '0000-00-00'),
-(2, 'sdfsd', 'dfsdf', 'sfdsf', 'dffd', 2, '0000-00-00'),
-(3, 'sdfsd', 'dfsdf', 'dfasd', 'sdfsdf', 2, '0000-00-00'),
-(4, 'sdfsd', 'dfsdf', 'sfdsf', '1sfad', 2, '0000-00-00'),
-(5, 'sdfsd', 'dfsdf', 'sfdsf', '1sfad', 2, '0000-00-00'),
-(6, 'sdfsd', 'dfsdf', 'sfdsf', 'sdfsdf', 2, '0000-00-00'),
-(7, 'sdfsd', 'dfsdf', 'sfdsf', 'dffd', 2, '0000-00-00'),
-(8, 'sdfsd', 'sfad', 'sfdsf', 'sdfsdf', 2, '0000-00-00'),
-(9, 'sdfsd', 'sfad', 'sfdsf', '1sfad', 2, '2026-01-22'),
-(10, 'sdfsd', 'sfad', 'sfdsf', 'dffd', 2, '2022-01-26');
+INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `Pie`, `id_usuario`, `Fecha`, `FechaAceptado`) VALUES
+(1, 'sdfsd', 'sfad', 'sfdsf', '', 2, '0000-00-00', '2022-02-24'),
+(2, 'sdfsd', 'dfsdf', 'sfdsf', 'dffd', 2, '0000-00-00', '2022-02-24'),
+(3, 'sdfsd', 'dfsdf', 'dfasd', 'sdfsdf', 2, '0000-00-00', '2022-02-24'),
+(4, 'sdfsd', 'dfsdf', 'sfdsf', '1sfad', 2, '0000-00-00', '2022-02-24'),
+(5, 'sdfsd', 'dfsdf', 'sfdsf', '1sfad', 2, '0000-00-00', '2022-02-24'),
+(6, 'sdfsd', 'dfsdf', 'sfdsf', 'sdfsdf', 2, '0000-00-00', '2022-02-24'),
+(7, 'sdfsd', 'dfsdf', 'sfdsf', 'dffd', 2, '0000-00-00', '2022-02-24'),
+(8, 'sdfsd', 'sfad', 'sfdsf', 'sdfsdf', 2, '0000-00-00', '2022-02-24'),
+(9, 'sdfsd', 'sfad', 'sfdsf', '1sfad', 2, '2026-01-22', '2022-02-24'),
+(10, 'sdfsd', 'sfad', 'sfdsf', 'dffd', 2, '2022-01-26', '2022-02-24');
 
 -- --------------------------------------------------------
 
@@ -83,26 +84,30 @@ CREATE TABLE `donativoa` (
   `ID_DonA` int(10) NOT NULL,
   `tipo` varchar(25) NOT NULL,
   `integrante` varchar(50) NOT NULL,
-  `integrante2` varchar(50) NOT NULL,
+  `integrante2` varchar(50) DEFAULT NULL,
   `integrante3` varchar(30) DEFAULT NULL,
-  `asesores` int(15) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `asesores` varchar(15) NOT NULL,
+  `asesor2` varchar(15) DEFAULT NULL,
+  `asesor3` varchar(15) DEFAULT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `fechaExpide` date NOT NULL DEFAULT current_timestamp(),
+  `fechaAceptado` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `donativoa`
 --
 
-INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `asesores`, `id_usuario`) VALUES
-(1, 'libro', '1', '2', NULL, 1, 0),
-(2, 'DFSD', 'DanielaGutiérrezSandoval', 'sdfsd', 'SDFS', 1, 2),
-(3, 'dsfsdf', 'DanielaGutiérrezSandoval', 'sdfsd', 'fsdfsd', 1, 2),
-(4, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'sdfsd', 'fsdfsd', 1, 2),
-(5, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'sdfsd', '', 1, 2),
-(6, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'NULL', 'NULL', 1, 2),
-(7, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'sdfsd', 'NULL', 1, 2),
-(8, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'sdfsd', 'NULL', 1, 2),
-(9, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'NULL', 'NULL', 1, 2);
+INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `asesores`, `asesor2`, `asesor3`, `id_usuario`, `fechaExpide`, `fechaAceptado`) VALUES
+(1, 'libro', '1', '2', NULL, '1', NULL, NULL, 0, '2022-02-24', '2022-02-24'),
+(2, 'DFSD', 'DanielaGutiérrezSandoval', 'sdfsd', 'SDFS', '1', NULL, NULL, 2, '2022-02-24', '2022-02-24'),
+(3, 'dsfsdf', 'DanielaGutiérrezSandoval', 'sdfsd', 'fsdfsd', '1', NULL, NULL, 2, '2022-02-24', '2022-02-24'),
+(4, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'sdfsd', 'fsdfsd', '1', NULL, NULL, 2, '2022-02-24', '2022-02-24'),
+(5, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'sdfsd', '', '1', NULL, NULL, 2, '2022-02-24', '2022-02-24'),
+(6, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'NULL', 'NULL', '1', NULL, NULL, 2, '2022-02-24', '2022-02-24'),
+(7, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'sdfsd', 'NULL', '1', NULL, NULL, 2, '2022-02-24', '2022-02-24'),
+(8, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'sdfsd', 'NULL', '1', NULL, NULL, 2, '2022-02-24', '2022-02-24'),
+(9, 'dsfsdf', 'Daniela Gutiérrez Sandoval', 'NULL', 'NULL', '1', NULL, NULL, 2, '2022-02-24', '2022-02-24');
 
 -- --------------------------------------------------------
 
