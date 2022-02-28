@@ -88,7 +88,7 @@ CREATE TABLE `donativoa` (
   `integrante` varchar(50) NOT NULL,
   `integrante2` varchar(50) DEFAULT NULL,
   `integrante3` varchar(30) DEFAULT NULL,
-  `asesores` varchar(15) NOT NULL,
+  `asesor1` varchar(15) NOT NULL,
   `asesor2` varchar(15) DEFAULT NULL,
   `asesor3` varchar(15) DEFAULT NULL,
   `id_usuario` int(11) NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE `donativoa` (
 -- Volcado de datos para la tabla `donativoa`
 --
 
-INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `asesores`, `asesor2`, `asesor3`, `id_usuario`, `fechaExpide`, `fechaAceptado`) VALUES
+INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `asesor1`, `asesor2`, `asesor3`, `id_usuario`, `fechaExpide`, `fechaAceptado`) VALUES
 (1, 'libro', '1', '2', NULL, '1', NULL, NULL, 0, '2022-02-24', '2022-02-24'),
 (2, 'DFSD', 'DanielaGutiérrezSandoval', 'sdfsd', 'SDFS', '1', NULL, NULL, 2, '2022-02-24', '2022-02-24'),
 (3, 'dsfsdf', 'DanielaGutiérrezSandoval', 'sdfsd', 'fsdfsd', '1', NULL, NULL, 2, '2022-02-24', '2022-02-24'),

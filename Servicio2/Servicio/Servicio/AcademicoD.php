@@ -5,14 +5,13 @@ $pacademico =$_POST['pacademico'];
 $tipo =$_POST['tipo'];
 $i1 =$_POST['i1'];
 $i2 =$_POST['i2'];
-$ass1 =$_POST['asesores'];
-$ass2 =$_POST['asesor2'];
-$ass3 =$_POST['asesor3'];
+$ass1 =$_POST['ass1'];
+$ass2 =$_POST['ass2'];
+$ass3 =$_POST['ass3'];
 
 
 
 
-$asesores =$_POST['asesores'];
 
 
 $co=mysqli_connect('localhost','root') or die('NO');
@@ -22,6 +21,7 @@ $result= mysqli_query($co,$consulta) or die('No consulta');
 $locacion="donativoa.php";
 $fechaExpide=date('y-m-j');
 $fechaAcepta=null;
+$nulo='NULL';
 if($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
     if($row['Contra'] ==  $pass){
         
@@ -29,18 +29,70 @@ if($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
         $nombreu=$row['Nombre']. ' '. $row['APaterno'] .' '. $row['AMaterno'];
         if($i2=='')
         {
-            $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesores, asesor2, asesor3, id_usuario, fechaExpide ) VALUES
-            ('".$tipo."','".$nombreu."','".$i1."', 'NULL', '".$asesores."', '".$ass1."', '".$ass2."', '".$ass3."', '".$row['id_usuario']."', '".$fechaExpide."' );"; 
-
-            if($ass1==""){
-
+            if($i1=='')
+            {
+                if($ass3=='')
+                {
+                    if($ass2=='')
+                    {
+                        $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesor1, asesor2, asesor3, id_usuario, fechaExpide, fechaAceptado ) VALUES
+                        ('".$tipo."','".$nombreu."','".$nulo."', '".$nulo."', '".$ass1."', '".$nulo."', '".$nulo."', '".$row['id_usuario']."', '".$fechaExpide."', '".$fechaAcepta."' );";
+                    }
+                    else
+                    {
+                        $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesor1, asesor2, asesor3, id_usuario, fechaExpide, fechaAceptado ) VALUES
+                        ('".$tipo."','".$nombreu."','".$nulo."', '".$nulo."', '".$ass1."', '".$ass2."', '".$nulo."', '".$row['id_usuario']."', '".$fechaExpide."', '".$fechaAcepta."' );";
+                    }
+                }
+                else
+                {
+                    $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesor1, asesor2, asesor3, id_usuario, fechaExpide, fechaAceptado ) VALUES
+                    ('".$tipo."','".$nombreu."','".$nulo."', '".$nulo."', '".$ass1."', '".$ass2."', '".$ass3."', '".$row['id_usuario']."', '".$fechaExpide."', '".$fechaAcepta."');";
+                }
+            }
+            else
+            {
+                if($ass3=='')
+                {
+                    if($ass2=='')
+                    {
+                        $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesor1, asesor2, asesor3, id_usuario, fechaExpide, fechaAceptado ) VALUES
+                        ('".$tipo."','".$nombreu."','".$i1."', '".$nulo."', '".$ass1."', '".$nulo."', '".$nulo."', '".$row['id_usuario']."', '".$fechaExpide."', '".$fechaAcepta."' );";
+                    }
+                    else
+                    {
+                        $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesor1, asesor2, asesor3, id_usuario, fechaExpide, fechaAceptado ) VALUES
+                        ('".$tipo."','".$nombreu."','".$i1."', '".$nulo."', '".$ass1."', '".$ass2."', '".$nulo."', '".$row['id_usuario']."', '".$fechaExpide."', '".$fechaAcepta."' );";
+                    }
+                }
+                else
+                {
+                    $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesor1, asesor2, asesor3, id_usuario, fechaExpide, fechaAceptado ) VALUES
+                    ('".$tipo."','".$nombreu."','".$i1."', '".$nulo."', '".$ass1."', '".$ass2."', '".$ass3."', '".$row['id_usuario']."', '".$fechaExpide."', '".$fechaAcepta."');";
+                }
             }
         
         }
         else
         {
-            $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesores, asesor2, asesor3, id_usuario, fechaExpide) VALUES
-            ('".$tipo."','".$nombreu."','".$i1."', '".$i2."', '".$asesores."',  '".$ass1."', '".$ass2."', '".$ass3."', '".$row['id_usuario']."', '".$fechaExpide."'  );"; 
+            if($ass3=='')
+            {
+                if($ass2=='')
+                {
+                    $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesor1, asesor2, asesor3, id_usuario, fechaExpide, fechaAceptado ) VALUES
+                    ('".$tipo."','".$nombreu."','".$i1."', '".$i2."', '".$ass1."',  '".$nulo."', '".$nulo."', '".$row['id_usuario']."', '".$fechaExpide."', '".$fechaAcepta."' );";
+                }
+                else
+                {
+                    $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesor1, asesor2, asesor3, id_usuario, fechaExpide, fechaAceptado ) VALUES
+                    ('".$tipo."','".$nombreu."','".$i1."', '".$i2."', '".$ass1."', '".$ass2."', '".$nulo."', '".$row['id_usuario']."', '".$fechaExpide."', '".$fechaAcepta."' );";
+                }
+            }
+            else
+            {
+                $consultar="INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, asesor1, asesor2, asesor3, id_usuario, fechaExpide, fechaAceptado ) VALUES
+                ('".$tipo."','".$nombreu."','".$i1."', '".$i2."', '".$ass1."', '".$ass2."', '".$ass3."', '".$row['id_usuario']."', '".$fechaExpide."', '".$fechaAcepta."' );";
+            }
         }
 
 
