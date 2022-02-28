@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-02-2022 a las 18:03:37
+-- Tiempo de generación: 28-02-2022 a las 18:30:10
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -31,7 +31,7 @@ CREATE TABLE `constancia` (
   `id_constancia` int(5) NOT NULL,
   `FechaExpide` date NOT NULL,
   `FechaAcepta` date NOT NULL,
-  `Estado` varchar(15) NOT NULL
+  `Estado` varchar(15) NOT NULL DEFAULT 'pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -39,7 +39,8 @@ CREATE TABLE `constancia` (
 --
 
 INSERT INTO `constancia` (`id_constancia`, `FechaExpide`, `FechaAcepta`, `Estado`) VALUES
-(1, '0000-00-00', '0000-00-00', 'aprobado');
+(1, '0000-00-00', '0000-00-00', 'aprobado'),
+(2, '2022-02-28', '0000-00-00', 'rechazado');
 
 -- --------------------------------------------------------
 
@@ -72,7 +73,8 @@ INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `Pie`, `id_usuario
 (7, 'sdfsd', 'dfsdf', 'sfdsf', 'dffd', 2, '0000-00-00', '2022-02-24'),
 (8, 'sdfsd', 'sfad', 'sfdsf', 'sdfsdf', 2, '0000-00-00', '2022-02-24'),
 (9, 'sdfsd', 'sfad', 'sfdsf', '1sfad', 2, '2026-01-22', '2022-02-24'),
-(10, 'sdfsd', 'sfad', 'sfdsf', 'dffd', 2, '2022-01-26', '2022-02-24');
+(10, 'sdfsd', 'sfad', 'sfdsf', 'dffd', 2, '2022-01-26', '2022-02-24'),
+(11, 'wasd', 'wasd', 'wasd', 'wasd', 1, '2022-02-28', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -132,7 +134,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `Nombre`, `APaterno`, `AMaterno`, `Boleta`, `Programa`, `Contra`, `Correo`, `Sexo`) VALUES
-(1, 'Karen', 'Esparza', 'Cuevas', 2019670085, 'Sistemas', 'karencia', 'karencia@gmail.com', 'Femenino'),
+(1, 'Karen', 'Esparza', 'Cuevas', 2019670203, 'Sistemas', 'karencia', 'karencia@gmail.com', 'Femenino'),
 (2, 'Daniela', 'Gutiérrez', 'Sandoval', 2019670018, 'Sistemas', '16554651', 'dgutierrezs1501@alumno.ipn.mx', 'femenino');
 
 -- --------------------------------------------------------
@@ -202,13 +204,13 @@ ALTER TABLE `usuarioad`
 -- AUTO_INCREMENT de la tabla `constancia`
 --
 ALTER TABLE `constancia`
-  MODIFY `id_constancia` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_constancia` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `donativo`
 --
 ALTER TABLE `donativo`
-  MODIFY `ID_DonB` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_DonB` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `donativoa`
