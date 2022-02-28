@@ -1,12 +1,17 @@
 <!doctype html>
 <?php
+include 'conecta.php';
 $numbol = $_GET["numerobol"];
 $co = mysqli_connect('localhost', 'root') or die('NO');
 $db = mysqli_select_db($co, "servicio") or die('no bd');
 $consulta = "SELECT * from usuario where Boleta='" . $numbol . "'";
 $result = mysqli_query($co, $consulta) or die('No consulta');
 $mostrar = mysqli_fetch_array($result);
+$consulta2 = "SELECT * FROM usuario";
+$guardar = $conecta->query($consulta2);
 ?>
+
+
 <html lang="en">
 
 <head>
@@ -15,6 +20,23 @@ $mostrar = mysqli_fetch_array($result);
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Biblioteca </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="This is an example dashboard created using build-in elements and components.">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-stand-blog.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Analytics Dashboard - This is an example dashboard created using build-in elements and components.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
@@ -28,6 +50,8 @@ $mostrar = mysqli_fetch_array($result);
     =========================================================
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
+
+    
     <link href="./main.css" rel="stylesheet">
 </head>
 
@@ -719,9 +743,81 @@ $mostrar = mysqli_fetch_array($result);
                                 </div>
                             </div>
                         </div>
+                        
 
 
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">Solicitudes pendientes
+                                    <div class="btn-actions-pane-right">
+                                       
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                <?php $conexion=mysqli_connect('localhost','root','','servicio');?>
+
+                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="text-center">  </th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col" class="text-center">solicitud</th>
+                                                <th scope="col" class="text-center">Estado</th>
+                                                <th scope="col" class="text-center">Detalles</th>
+                                            </tr>
+                                            
+                                        </thead>
+                                        <tbody>
+                                        <?php while($row = $guardar->fetch_assoc()){?>
+                                            <tr>
+                                            
+                                  
+                                                <td class="text-center text-muted"><?php echo $row ['id_usuario']; ?></td><!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
+                                                <td><!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left mr-3">
+                                                                <div class="widget-content-left">
+                                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt=""><!--AQUI VA LA IMAGEN DE LA PERSONA -->
+                                                                </div>
+                                                            </div>
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading"><?php echo $row ['Nombre']; ?></div>
+                                                                <div class="widget-heading"><?php echo $row ['APaterno']; ?></div>
+                                                                <div class="widget-heading"><?php echo $row ['AMaterno']; ?></div>
+                                                                <div class="widget-subheading opacity-7"><?php echo $row ['Programa']; ?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                         
+                                                </td>
+                                                <td class="text-center">Madrid</td>
+                                                <td class="text-center">
+                                                    <div class="badge badge-warning">Pending</div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                </td>
+
+                                            </tr>
+                                        <?php } ?>                    
+                                            <!-- aqui inicia otra fila de la tabla -->
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-block text-center card-footer">
+                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                                    <button class="btn-wide btn btn-success">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- aqui termina la division de la seccion en donde van las tablas -->
+                    
+                    
 
                     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
                 </div>

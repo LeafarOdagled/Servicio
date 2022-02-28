@@ -776,7 +776,7 @@
     </div>
 <script type="text/javascript" src="./assets/scripts/main.js"></script></body>
 </html>
-<!--  modal individual -->
+<!--  modal grupal -->
 
 <div class="modal fade" id="ModalG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -806,9 +806,9 @@
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Integrante 2: </label><input name="i2" id="exampleAddress"  type="text" class="form-control"></div>
 
                     Escriba los asesores que formaron parte de su TT. De no ocupar un espacio, puede dejarlo en blanco:
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 1:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 2:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 3:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 1:</label><input name="ass1" id="exampleAddress"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 2:</label><input name="ass2" id="exampleAddress"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 3:</label><input name="ass3" id="exampleAddress"  type="text" class="form-control"></div>
                     
                 </div>
                     
@@ -850,9 +850,9 @@
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo de material que se dona</label><input name="tipo" id="exampleAddress"  type="text" class="form-control"></div>
                     <!-- esto es para los asesores-->
                     Escriba los asesores que formaron parte de su TT. De no ocupar un espacio, puede dejarlo en blanco:
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 1:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 2:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 3:</label><input name="ass" id="exampleAddress"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 1:</label><input name="ass1" id="exampleAddress"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 2:</label><input name="ass2" id="exampleAddress"  type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 3:</label><input name="ass3" id="exampleAddress"  type="text" class="form-control"></div>
                 </div>
                     
             
