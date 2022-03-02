@@ -802,7 +802,11 @@
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Autor</label><input name="autor" id="exampleAddress"  type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">ISBN</label><input name="isbn" id="exampleAddress"  type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Pie de imprenta</label><input name="pie" id="exampleAddress"  type="text" class="form-control"></div>
+                    <p>poner los siguientes documentos en un pdf que no exeda el peso de 2MB  </p>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">archivo</label> <input type="file" id="exampleAddress" name="archivo1"></div>
                 </div>
+
+                    
                     
             
             

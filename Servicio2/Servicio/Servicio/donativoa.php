@@ -809,7 +809,8 @@
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 1:</label><input name="ass1" id="exampleAddress"  type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 2:</label><input name="ass2" id="exampleAddress"  type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 3:</label><input name="ass3" id="exampleAddress"  type="text" class="form-control"></div>
-                    
+                    <p>poner los siguientes documentos en un pdf que no exeda el peso de 2MB  </p>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">archivo</label> <input type="file" id="exampleAddress" name="archivo1"></div>
                 </div>
                     
             
@@ -853,6 +854,8 @@
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 1:</label><input name="ass1" id="exampleAddress"  type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 2:</label><input name="ass2" id="exampleAddress"  type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 3:</label><input name="ass3" id="exampleAddress"  type="text" class="form-control"></div>
+                    <p>poner los siguientes documentos en un pdf que no exeda el peso de 2MB  </p>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">archivo</label> <input type="file" id="exampleAddress" name="archivo1"></div>
                 </div>
                     
             
