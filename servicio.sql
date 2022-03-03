@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-03-2022 a las 19:01:56
+-- Tiempo de generación: 03-03-2022 a las 21:06:21
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -31,18 +31,18 @@ CREATE TABLE `constancia` (
   `id_constancia` int(5) NOT NULL,
   `FechaExpide` date NOT NULL,
   `FechaAcepta` date NOT NULL,
-  `Estado` varchar(15) NOT NULL DEFAULT 'pendiente',
-  `id_usuario` int(11) DEFAULT NULL
+  `estadoC` varchar(15) NOT NULL DEFAULT 'pendiente',
+  `id_usuario` int(11) DEFAULT NULL,
+  `nombreC` varchar(50) NOT NULL DEFAULT 'constancia de no adeudo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `constancia`
 --
 
-INSERT INTO `constancia` (`id_constancia`, `FechaExpide`, `FechaAcepta`, `Estado`, `id_usuario`) VALUES
-(17, '2022-03-02', '0000-00-00', 'Rechazado', 1),
-(18, '2022-03-02', '0000-00-00', 'Rechazado', 1),
-(19, '2022-03-02', '0000-00-00', 'Rechazado', 1);
+INSERT INTO `constancia` (`id_constancia`, `FechaExpide`, `FechaAcepta`, `estadoC`, `id_usuario`, `nombreC`) VALUES
+(20, '2022-03-02', '0000-00-00', 'Pendiente', 1, 'constancia de no adeudo'),
+(23, '2022-03-03', '0000-00-00', 'Pendiente', 1, 'constancia de no adeudo');
 
 -- --------------------------------------------------------
 
@@ -58,15 +58,17 @@ CREATE TABLE `donativo` (
   `Pie` varchar(15) NOT NULL,
   `Fecha` date NOT NULL DEFAULT current_timestamp(),
   `FechaAceptado` date NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `id_usuario` int(11) NOT NULL,
+  `nombreB` varchar(50) NOT NULL DEFAULT 'Donativo Bibliográfico ',
+  `estadoB` varchar(25) NOT NULL DEFAULT 'Pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `donativo`
 --
 
-INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `Pie`, `Fecha`, `FechaAceptado`, `id_usuario`) VALUES
-(14, 'wasd', 'wasd', 'wasd', 'wasd', '2022-03-02', '0000-00-00', 1);
+INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `Pie`, `Fecha`, `FechaAceptado`, `id_usuario`, `nombreB`, `estadoB`) VALUES
+(14, 'wasd', 'wasd', 'wasd', 'wasd', '2022-03-02', '0000-00-00', 1, 'Donativo Bibliográfico ', 'Pendiente');
 
 -- --------------------------------------------------------
 
@@ -85,15 +87,17 @@ CREATE TABLE `donativoa` (
   `asesor3` varchar(15) DEFAULT NULL,
   `id_usuario` int(11) NOT NULL,
   `fechaExpide` date NOT NULL DEFAULT current_timestamp(),
-  `fechaAceptado` date NOT NULL
+  `fechaAceptado` date NOT NULL,
+  `nombreA` varchar(50) NOT NULL DEFAULT 'Donativo Académico ',
+  `estadoA` varchar(25) NOT NULL DEFAULT 'Pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `donativoa`
 --
 
-INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `asesor1`, `asesor2`, `asesor3`, `id_usuario`, `fechaExpide`, `fechaAceptado`) VALUES
-(11, 'wasd', 'Rafael Delgado Calzada', 'wasd', 'NULL', 'wasd', 'NULL', 'NULL', 1, '2022-03-02', '0000-00-00');
+INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `asesor1`, `asesor2`, `asesor3`, `id_usuario`, `fechaExpide`, `fechaAceptado`, `nombreA`, `estadoA`) VALUES
+(11, 'wasd', 'Rafael Delgado Calzada', 'wasd', 'NULL', 'wasd', 'NULL', 'NULL', 1, '2022-03-02', '0000-00-00', 'Donativo Académico ', 'Pendiente');
 
 -- --------------------------------------------------------
 
@@ -193,7 +197,7 @@ ALTER TABLE `usuarioad`
 -- AUTO_INCREMENT de la tabla `constancia`
 --
 ALTER TABLE `constancia`
-  MODIFY `id_constancia` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_constancia` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `donativo`
@@ -240,6 +244,14 @@ ALTER TABLE `donativo`
 --
 ALTER TABLE `donativoa`
   ADD CONSTRAINT `donativoa_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`ID_DonB`) REFERENCES `donativo` (`ID_DonB`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`id_constancia`) REFERENCES `constancia` (`id_constancia`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_3` FOREIGN KEY (`ID_DonA`) REFERENCES `donativoa` (`ID_DonA`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
