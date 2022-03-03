@@ -13,10 +13,6 @@
     $db=mysqli_select_db($co,"servicio") or die('no bd');
     $locacion="registro.html";
     
-
-
-    
-        
             if(strlen($pass)<8)
             {
                 header($locacion);

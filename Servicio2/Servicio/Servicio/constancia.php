@@ -21,11 +21,11 @@ if($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
 
         $fechaExpide=date('y-m-j');
         $fechaAcepta=null;
-        $estado="Rechazado";
+        $estado="Pendiente";
          
     
 
-        $consultar="INSERT INTO constancia(id_constancia, FechaExpide,FechaAcepta,Estado , id_usuario)  VALUES
+        $consultar="INSERT INTO constancia(id_constancia, FechaExpide,FechaAcepta,estadoC, id_usuario)  VALUES
         ('".$row['id_constancia']."', '".$fechaExpide."', '".$fechaAcepta."', '".$estado."', '" . $mostrar['id_usuario'] ."');";
 
 

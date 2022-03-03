@@ -8,15 +8,6 @@ $consulta = "SELECT * from usuarioad where Usuario='" . $UsuarioAdmin . "'";
 $result = mysqli_query($co, $consulta) or die('No consulta');
 $mostrar = mysqli_fetch_array($result);
 
-$consulta2 = "SELECT * FROM usuario";
-$consulta3 = "SELECT * FROM donativo";
-$consulta4 = "SELECT * FROM donativoa";
-$consulta5 = "SELECT * FROM constancia";
-$guardar = $conecta->query($consulta2);
-$guardar2 = $conecta->query($consulta3);
-$guardar3 = $conecta->query($consulta4);
-$guardar4 = $conecta->query($consulta5);
-
 
 ?>
 <html lang="en">
@@ -551,7 +542,7 @@ $guardar4 = $conecta->query($consulta5);
                     <div class="row">
                         <div class="col-md-12">
                             <div class="main-card mb-3 card">
-                                <div class="card-header">Solicitudes pendientes
+                                <div class="card-header">Solicitudes pendientes de constancia de no adeudo
                                     <div class="btn-actions-pane-right">
                                        
                                     </div>
@@ -565,6 +556,7 @@ $guardar4 = $conecta->query($consulta5);
                                                 <th scope="col" class="text-center">  </th>
                                                 <th scope="col">Nombre</th>
                                                 <th scope="col" class="text-center">solicitud</th>
+                                                
                                                 <th scope="col" class="text-center">Estado</th>
                                                 <th scope="col" class="text-center">Detalles</th>
                                                 <th scope="col" class="text-center">comentarios</th>
@@ -573,12 +565,12 @@ $guardar4 = $conecta->query($consulta5);
                                             
                                         </thead>
                                         <tbody>
-                                        <?php while($row = $guardar->fetch_assoc()  ){?>
+                                        <?php while($fila1 = $conectarTabla1->fetch_assoc()  ){?>
                                             
 
 
                                             <tr>
-                                                <td class="text-center text-muted"><?php echo $row ['id_usuario']; ?></td><!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
+                                                <td class="text-center text-muted"><?php echo $fila1 ['id_usuario']; ?></td><!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
                                                 <td><!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
@@ -588,11 +580,11 @@ $guardar4 = $conecta->query($consulta5);
                                                                 </div>
                                                             </div>
                                                             <div class="widget-content-left flex2">
-                                                                <div class="widget-heading"><?php echo $row ['Nombre']; ?></div>
-                                                                <div class="widget-heading"><?php echo $row ['APaterno']; ?></div>
-                                                                <div class="widget-heading"><?php echo $row ['AMaterno']; ?></div>
+                                                                <div class="widget-heading"><?php echo $fila1 ['Nombre']; ?></div>
+                                                                <div class="widget-heading"><?php echo $fila1 ['APaterno']; ?></div>
+                                                                <div class="widget-heading"><?php echo $fila1 ['AMaterno']; ?></div>
                                                                 
-                                                                <div class="widget-subheading opacity-7"><?php echo $row ['Programa']; ?></div>
+                                                                <div class="widget-subheading opacity-7"><?php echo $fila1 ['Programa']; ?></div>
                                                             </div>
                                                         </div>
                                                     </div>         
@@ -600,19 +592,29 @@ $guardar4 = $conecta->query($consulta5);
 
                                                 
                                                 <td class="text-center"><!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
-                                                    
+                                                    <div>
+                                                    <!--<div class="widget-heading"><?php echo $fila1 ['nombreC']; ?></div>-->
+                                                    <div class="widget-heading"><?php echo $fila1 ['nombreC']; ?></div>
+                                                    <!--<div class="widget-heading"><?php echo $fila1 ['nombreB']; ?></div>-->
+                                                    </div>
                                                 </td><!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
                                                 
                                                 <td class="text-center"><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-                                                    <div class="badge badge-warning"> </div>
+                                                    <div>
+                                                    <div class="badge badge-warning"><div class="widget-heading"><?php echo $fila1 ['estadoC']; ?></div> </div>
+                                                    </div>
                                                 </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
 
                                                 <td class="text-center"><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-                                                    
-                                                </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-                                                <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
-                                                <td class="text-center">
+                                                    <div>
                                                     <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                    </div>
+                                                </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+                                                
+                                                <td class="text-center">
+                                                    <div>
+                                                    
+                                                    </div>
                                                 </td>
 
 
@@ -625,6 +627,9 @@ $guardar4 = $conecta->query($consulta5);
                                         </tbody>
                                     </table>
                                 </div>
+
+                                
+
                                 <div class="d-block text-center card-footer">
                                     <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
                                     <button class="btn-wide btn btn-success">Save</button>
@@ -633,7 +638,211 @@ $guardar4 = $conecta->query($consulta5);
                         </div>
                     </div><!-- aqui termina la division de la seccion en donde van las tablas -->
 
+                     <!--AQUI EMPIEZA LA OTRA TABLA  ########################################################################################################################-->                            
 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">Solicitudes de donativo 
+                                    <div class="btn-actions-pane-right">
+                                       
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                
+
+                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="text-center">  </th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col" class="text-center">solicitud</th>
+                                                
+                                                <th scope="col" class="text-center">Estado</th>
+                                                <th scope="col" class="text-center">Detalles</th>
+                                                <th scope="col" class="text-center">comentarios</th>
+                                                
+                                            </tr>
+                                            
+                                        </thead>
+                                        <tbody>
+
+                                        <?php while($fila2 = $conectarTabla2->fetch_assoc()  ){?>
+                                            
+
+
+                                            <tr>
+                                                <td class="text-center text-muted"><?php echo $fila2 ['id_usuario']; ?></td><!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
+                                                <td><!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left mr-3">
+                                                                <div class="widget-content-left">
+                                                                <!--    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt=""><!--AQUI VA LA IMAGEN DE LA PERSONA -->
+                                                                </div>
+                                                            </div>
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading"><?php echo $fila2 ['Nombre']; ?></div>
+                                                                <div class="widget-heading"><?php echo $fila2 ['APaterno']; ?></div>
+                                                                <div class="widget-heading"><?php echo $fila2 ['AMaterno']; ?></div>
+                                                                
+                                                                <div class="widget-subheading opacity-7"><?php echo $fila2 ['Programa']; ?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>         
+                                                </td><!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
+
+                                                
+                                                <td class="text-center"><!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
+                                                    <div>
+
+                                                    <div class="widget-heading"><?php echo $fila2 ['nombreB']; ?></div>
+                                                    
+                                                    </div>
+                                                </td><!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
+                                                
+                                                <td class="text-center"><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+                                                    <div>
+                                                    <div class="badge badge-warning"><div class="widget-heading"><?php echo $fila2 ['estadoB']; ?></div> </div>
+                                                    </div>
+                                                </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+
+                                                <td class="text-center"><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+                                                    <div>
+                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                    </div>
+                                                </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+                                                
+                                                <td class="text-center">
+                                                    <div>
+                                                    
+                                                    </div>
+                                                </td>
+
+
+                                            </tr>
+                                            
+                                        <?php } ?>                    
+                                            <!-- aqui inicia otra fila de la tabla -->
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                
+                                
+                                <div class="d-block text-center card-footer">
+                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                                    <button class="btn-wide btn btn-success">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- aqui termina la division de la seccion en donde van las tablas -->
+                    <!-- aqui termina la division de la seccion en donde van las tablas ##################################################################################-->                       
+                    
+                    <!--AQUI EMPIEZA LA OTRA TABLA  ########################################################################################################################-->                            
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">Solicitudes Bilbleograficos 
+                                    <div class="btn-actions-pane-right">
+                                       
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                
+
+                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="text-center">  </th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col" class="text-center">solicitud</th>
+                                                
+                                                <th scope="col" class="text-center">Estado</th>
+                                                <th scope="col" class="text-center">Detalles</th>
+                                                <th scope="col" class="text-center">comentarios</th>
+                                                
+                                            </tr>
+                                            
+                                        </thead>
+                                        <tbody>
+
+                                        <?php while($fila3 = $conectarTabla3->fetch_assoc()  ){?>
+                                            
+
+
+                                            <tr>
+                                                <td class="text-center text-muted"><?php echo $fila3 ['id_usuario']; ?></td><!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
+                                                <td><!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
+                                                    <div class="widget-content p-0">
+                                                        <div class="widget-content-wrapper">
+                                                            <div class="widget-content-left mr-3">
+                                                                <div class="widget-content-left">
+                                                                <!--    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt=""><!--AQUI VA LA IMAGEN DE LA PERSONA -->
+                                                                </div>
+                                                            </div>
+                                                            <div class="widget-content-left flex2">
+                                                                <div class="widget-heading"><?php echo $fila3 ['Nombre']; ?></div>
+                                                                <div class="widget-heading"><?php echo $fila3 ['APaterno']; ?></div>
+                                                                <div class="widget-heading"><?php echo $fila3 ['AMaterno']; ?></div>
+                                                                
+                                                                <div class="widget-subheading opacity-7"><?php echo $fila3 ['Programa']; ?></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>         
+                                                </td><!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
+
+                                                
+                                                <td class="text-center"><!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
+                                                    <div>
+
+                                                    <div class="widget-heading"><?php echo $fila3 ['nombreA']; ?></div>
+                                                    
+                                                    </div>
+                                                </td><!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
+                                                
+                                                <td class="text-center"><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+                                                    <div>
+                                                    <div class="badge badge-warning"><div class="widget-heading"><?php echo $fila3 ['estadoA']; ?></div> </div>
+                                                    </div>
+                                                </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+
+                                                <td class="text-center"><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+                                                    <div>
+                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                    </div>
+                                                </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+                                                
+                                                <td class="text-center">
+                                                    <div>
+                                                    
+                                                    </div>
+                                                </td>
+
+
+                                            </tr>
+                                            
+                                        <?php } ?>                    
+                                            <!-- aqui inicia otra fila de la tabla -->
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                
+                                
+                                <div class="d-block text-center card-footer">
+                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+                                    <button class="btn-wide btn btn-success">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- aqui termina la division de la seccion en donde van las tablas -->
+                    <!-- aqui termina la division de la seccion en donde van las tablas ##################################################################################-->
 
                     
                 </div>
