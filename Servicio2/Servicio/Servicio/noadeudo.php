@@ -72,10 +72,9 @@
                     </div>
                     <ul class="header-menu nav">
                         <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-database"> </i>
-                                Statistics
-                            </a>
+                                    <?php echo '<a href="principal.php?numerobol='.$numbol.'" class="mm-active nav-link">
+                                    <i class="nav-link-icon fa pe-7s-home"> </i>
+                                    Home</a>' ?>
                         </li>
                         <li class="btn-group nav-item">
                             <a href="javascript:void(0);" class="nav-link">

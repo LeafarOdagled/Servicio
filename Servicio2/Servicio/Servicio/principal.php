@@ -99,10 +99,10 @@ $guardar = $conecta->query($consulta2);
                     </div>
                     <ul class="header-menu nav">
                         <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-database"> </i>
-                                Statistics
-                            </a>
+                        <?php echo '<a href="principal.php?numerobol='.$numbol.'" class="mm-active nav-link">
+                                    <i class="nav-link-icon fa pe-7s-home"> </i>
+                                    Home</a>' ?>
+                            
                         </li>
                         <li class="btn-group nav-item">
                             <a href="javascript:void(0);" class="nav-link">
@@ -497,7 +497,9 @@ $guardar = $conecta->query($consulta2);
                                     <i class="metismenu-icon pe-7s-study"></i>
                                     Donativo Académico</a>' ?>
                             </li>
+                            <li class="app-sidebar__heading">Red de Género</li>
                             <li>
+                                
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-diamond"></i>
                                     Elements
@@ -750,75 +752,7 @@ $guardar = $conecta->query($consulta2);
 
 
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="main-card mb-3 card">
-                                <div class="card-header">Solicitudes pendientes
-                                    <div class="btn-actions-pane-right">
-                                       
-                                    </div>
-                                </div>
-                                <div class="table-responsive">
-                                <?php $conexion=mysqli_connect('localhost','root','','servicio');?>
-
-                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="text-center">  </th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col" class="text-center">solicitud</th>
-                                                <th scope="col" class="text-center">Estado</th>
-                                                <th scope="col" class="text-center">Detalles</th>
-                                            </tr>
-                                            
-                                        </thead>
-                                        <tbody>
-                                        <?php while($row = $guardar->fetch_assoc()){?>
-                                            <tr>
-                                            
-                                  
-                                                <td class="text-center text-muted"><?php echo $row ['id_usuario']; ?></td><!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
-                                                <td><!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left mr-3">
-                                                                <div class="widget-content-left">
-                                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt=""><!--AQUI VA LA IMAGEN DE LA PERSONA -->
-                                                                </div>
-                                                            </div>
-                                                            <div class="widget-content-left flex2">
-                                                                <div class="widget-heading"><?php echo $row ['Nombre']; ?></div>
-                                                                <div class="widget-heading"><?php echo $row ['APaterno']; ?></div>
-                                                                <div class="widget-heading"><?php echo $row ['AMaterno']; ?></div>
-                                                                <div class="widget-subheading opacity-7"><?php echo $row ['Programa']; ?></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                         
-                                                </td>
-                                                <td class="text-center">Madrid</td>
-                                                <td class="text-center">
-                                                    <div class="badge badge-warning">Pending</div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
-                                                </td>
-
-                                            </tr>
-                                        <?php } ?>                    
-                                            <!-- aqui inicia otra fila de la tabla -->
-                                            
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="d-block text-center card-footer">
-                                    <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                                    <button class="btn-wide btn btn-success">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- aqui termina la division de la seccion en donde van las tablas -->
+                    
                     
                     
 
