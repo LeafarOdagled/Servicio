@@ -25,6 +25,11 @@ $tabla3="SELECT US.id_usuario, US.Nombre, US.APaterno, US.AMaterno, US.Boleta, U
                 FROM usuario US
                 INNER JOIN donativoa DA ON US.id_usuario = DA.id_usuario
                                ";
+$tablaDetalles="SELECT US.id_usuario, US.Nombre, US.APaterno, US.AMaterno, US.Boleta, US.Programa, US.Correo, 
+                DA.nombreA, DA.estadoA
+                FROM usuario US
+                INNER JOIN donativoa DA ON US.id_usuario = DA.id_usuario
+               ";                               
 
 
 $conectarTabla1= $conecta->query($tabla1);
@@ -32,6 +37,8 @@ $conectarTabla1= $conecta->query($tabla1);
 $conectarTabla2= $conecta->query($tabla2);
 
 $conectarTabla3= $conecta->query($tabla3);
+
+$conectarTablaDetalles=$conecta->query($tablaDetalles);
 
 
 //$cone=$conecta->query($query);

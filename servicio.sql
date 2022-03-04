@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-03-2022 a las 21:06:21
+-- Tiempo de generación: 04-03-2022 a las 20:26:43
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -42,7 +42,8 @@ CREATE TABLE `constancia` (
 
 INSERT INTO `constancia` (`id_constancia`, `FechaExpide`, `FechaAcepta`, `estadoC`, `id_usuario`, `nombreC`) VALUES
 (20, '2022-03-02', '0000-00-00', 'Pendiente', 1, 'constancia de no adeudo'),
-(23, '2022-03-03', '0000-00-00', 'Pendiente', 1, 'constancia de no adeudo');
+(23, '2022-03-03', '0000-00-00', 'Pendiente', 1, 'constancia de no adeudo'),
+(24, '2022-03-04', '0000-00-00', 'Pendiente', 13, 'constancia de no adeudo');
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `Nombre`, `APaterno`, `AMaterno`, `Boleta`, `Programa`, `Contra`, `Correo`, `Sexo`, `id_constancia`, `ID_DonA`, `ID_DonB`) VALUES
-(1, 'Rafael', 'Delgado', 'Calzada', 2019670203, 'Sistemas', 'karencia', 'rdelgado1801@alumno.ipn.mx', 'masculino', NULL, NULL, NULL);
+(1, 'Rafael', 'Delgado', 'Calzada', 2019670203, 'Sistemas', 'karencia', 'rdelgado1801@alumno.ipn.mx', 'masculino', NULL, NULL, NULL),
+(13, 'juan', 'paco', 'pedro', 2019670204, 'Sistemas', 'karencia', 'rdeelgado1801@alumno.ipn.mx', 'masculino', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -197,7 +199,7 @@ ALTER TABLE `usuarioad`
 -- AUTO_INCREMENT de la tabla `constancia`
 --
 ALTER TABLE `constancia`
-  MODIFY `id_constancia` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_constancia` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `donativo`
@@ -215,7 +217,7 @@ ALTER TABLE `donativoa`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarioad`

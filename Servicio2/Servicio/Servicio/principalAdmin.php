@@ -607,13 +607,14 @@ $mostrar = mysqli_fetch_array($result);
 
                                                 <td class="text-center"><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
                                                     <div>
-                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">detalles
+
                                                     </div>
                                                 </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
                                                 
                                                 <td class="text-center">
                                                     <div>
-                                                    
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal">comentarios
                                                     </div>
                                                 </td>
 
@@ -709,13 +710,13 @@ $mostrar = mysqli_fetch_array($result);
 
                                                 <td class="text-center"><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
                                                     <div>
-                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">detalles
                                                     </div>
                                                 </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
                                                 
                                                 <td class="text-center">
                                                     <div>
-                                                    
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal">comentarios
                                                     </div>
                                                 </td>
 
@@ -812,13 +813,14 @@ $mostrar = mysqli_fetch_array($result);
 
                                                 <td class="text-center"><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
                                                     <div>
-                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">detalles
                                                     </div>
                                                 </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
                                                 
                                                 <td class="text-center">
                                                     <div>
-                                                    
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal">comentarios 
+                                                    </button>
                                                     </div>
                                                 </td>
 
@@ -874,5 +876,108 @@ $mostrar = mysqli_fetch_array($result);
         }
     }
 </script>
+
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class ="table-responsive">
+                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center">Nombre</th>
+                            <th scope="col" class="text-center">Programa academico</th>
+                            <th scope="col" class="text-center">Solicitud</th>
+                            <th scope="col" class="text-center">Fecha de solicitud</th>
+                            <th scope="col" class="text-center">Estado</th>
+                            <th scope="col" class="text-center">Correo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center text-muted">
+                                <div class="widget-content p-0">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left flex2">
+                                            <p>aqui van los datos del nombre</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td><!--TODO ESTO ES PARA EL NOMBRE -->
+                            <td class="text-center">
+                                <div>
+                                    <p>aqui va el programa academico</p>
+                                </div>
+                            </td>
+                            <td clas="text-center">
+                                <div>
+                                    <p>aqui va la solicitud</p>
+                                </div>
+                            </td>
+                            <td clas="text-center">
+                                <div>
+                                    <p>aqui va la Fecha</p>
+                                </div>
+                            </td>
+                            <td clas="text-center">
+                                <div>
+                                    <p>aqui va el estado</p>
+                                </div>
+                            </td>
+                            <td clas="text-center">
+                                <div>
+                                    <p>aqui va el correo</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Comentario modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">comentarios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Comentarios realizados</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><p>poner aqui los comentarios</p></td>
+                        <td><button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success" >hacer comentario</button></a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            </div>
+            
+            <div class="modal-footer">
+                <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target=".bd-example-modal-lg">Comentarios realizados</button></a>-->
+                
+                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal"  class="mt-2 btn btn-primary">Cerrar</a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
 
 </html>
