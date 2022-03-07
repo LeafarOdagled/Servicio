@@ -733,7 +733,9 @@ $mostrar = mysqli_fetch_array($result);
                             <td>
                                 <p>poner aqui los comentarios</p>
                             </td>
-                            <td><button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">hacer comentario</button></a> </td>
+                            <td>
+                            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target="#modalComent">Hacer comentario</button></a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -748,8 +750,41 @@ $mostrar = mysqli_fetch_array($result);
 
         </div>
     </div>
-</div>
 
+</div>
+<!--  Hacer Comentario modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modalComent">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Hacer comentarios</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="" method="POST" action="constancia.php">
+                    <div>
+                        <!--<input class="controls" type="text" name="coment" id="comment" rows="10" cols="40" placeholder="comentario">-->
+                        <textarea type="text" name="coment" id="comment" rows="10" cols="40" placeholder="Escribir comentario"></textarea>
+                    <div>
+                        <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Solicitar</button>
+                    </div>
+                    </div>
+                    
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target=".bd-example-modal-lg">Comentarios realizados</button></a>-->
+
+                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 
 </html>
