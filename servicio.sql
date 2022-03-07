@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-03-2022 a las 20:26:43
+-- Tiempo de generación: 07-03-2022 a las 06:57:45
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 

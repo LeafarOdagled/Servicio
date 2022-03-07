@@ -8,7 +8,9 @@ $consulta = "SELECT * from usuario where Boleta='" . $numbol . "'";
 $result = mysqli_query($co, $consulta) or die('No consulta');
 $mostrar = mysqli_fetch_array($result);
 $consulta2 = "SELECT * FROM usuario";
-$guardar = $conecta->query($consulta2);
+
+
+$guardar = $conecta->query($consulta);
 ?>
 
 
@@ -19,7 +21,7 @@ $guardar = $conecta->query($consulta2);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Biblioteca </title>
+    <title>Usuario </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
@@ -753,7 +755,7 @@ $guardar = $conecta->query($consulta2);
                     <div class="row">
                         <div class="col-md-12">
                             <div class="main-card mb-3 card">
-                                <div class="card-header">Solicitudes pendientes
+                                <div class="card-header">Solicitudes pendientes de constancia de no adeudo
                                     <div class="btn-actions-pane-right">
                                        
                                     </div>
@@ -767,44 +769,65 @@ $guardar = $conecta->query($consulta2);
                                                 <th scope="col" class="text-center">  </th>
                                                 <th scope="col">Nombre</th>
                                                 <th scope="col" class="text-center">solicitud</th>
+                                                
                                                 <th scope="col" class="text-center">Estado</th>
-                                                <th scope="col" class="text-center">Detalles</th>
+                                                <th scope="col" class="text-center">comentarios</th>
+                                                
                                             </tr>
                                             
                                         </thead>
                                         <tbody>
-                                        <?php while($row = $guardar->fetch_assoc()){?>
-                                            <tr>
+                                        <?php while($fila1 = $conectarTabla1->fetch_assoc()  ){?>
                                             
-                                  
-                                                <td class="text-center text-muted"><?php echo $row ['id_usuario']; ?></td><!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
+
+
+                                            <tr>
+                                                <td class="text-center text-muted"><?php echo $fila1 ['id_usuario']; ?></td><!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
                                                 <td><!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
                                                                 <div class="widget-content-left">
-                                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt=""><!--AQUI VA LA IMAGEN DE LA PERSONA -->
+                                                                <!--    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt=""><!--AQUI VA LA IMAGEN DE LA PERSONA -->
                                                                 </div>
                                                             </div>
                                                             <div class="widget-content-left flex2">
-                                                                <div class="widget-heading"><?php echo $row ['Nombre']; ?></div>
-                                                                <div class="widget-heading"><?php echo $row ['APaterno']; ?></div>
-                                                                <div class="widget-heading"><?php echo $row ['AMaterno']; ?></div>
-                                                                <div class="widget-subheading opacity-7"><?php echo $row ['Programa']; ?></div>
+                                                                <div class="widget-heading"><?php echo $fila1 ['Nombre']; ?></div>
+                                                                <div class="widget-heading"><?php echo $fila1 ['APaterno']; ?></div>
+                                                                <div class="widget-heading"><?php echo $fila1 ['AMaterno']; ?></div>
+                                                                
+                                                                <div class="widget-subheading opacity-7"><?php echo $fila1 ['Programa']; ?></div>
                                                             </div>
                                                         </div>
+                                                    </div>         
+                                                </td><!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
+
+                                                
+                                                <td class="text-center"><!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
+                                                    <div>
+                                                    <!--<div class="widget-heading"><?php echo $fila1 ['nombreC']; ?></div>-->
+                                                    <div class="widget-heading"><?php echo $fila1 ['nombreC']; ?></div>
+                                                    <!--<div class="widget-heading"><?php echo $fila1 ['nombreB']; ?></div>-->
                                                     </div>
-                                                         
-                                                </td>
-                                                <td class="text-center">Madrid</td>
+                                                </td><!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
+                                                
+                                                <td class="text-center"><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+                                                    <div>
+                                                    <div class="badge badge-warning"><div class="widget-heading"><?php echo $fila1 ['estadoC']; ?></div> </div>
+                                                    </div>
+                                                </td><!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
+
+                                                
+                                                
                                                 <td class="text-center">
-                                                    <div class="badge badge-warning">Pending</div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm">Details</button>
+                                                    <div>
+                                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal">comentarios
+                                                    </div>
                                                 </td>
 
+
                                             </tr>
+                                            
                                         <?php } ?>                    
                                             <!-- aqui inicia otra fila de la tabla -->
                                             
@@ -812,6 +835,9 @@ $guardar = $conecta->query($consulta2);
                                         </tbody>
                                     </table>
                                 </div>
+
+                                
+
                                 <div class="d-block text-center card-footer">
                                     <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
                                     <button class="btn-wide btn btn-success">Save</button>
@@ -819,6 +845,7 @@ $guardar = $conecta->query($consulta2);
                             </div>
                         </div>
                     </div><!-- aqui termina la division de la seccion en donde van las tablas -->
+
                     
                     
 

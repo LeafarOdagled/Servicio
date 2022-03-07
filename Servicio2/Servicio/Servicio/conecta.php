@@ -7,6 +7,7 @@
     if ($conecta->connect_error){
         die("error, no se pudo conectar la bd".$conecta->connect_error);
     }
+    $nom = $_GET["id_usuario"];
 
     
 
@@ -26,9 +27,14 @@ $tabla3="SELECT US.id_usuario, US.Nombre, US.APaterno, US.AMaterno, US.Boleta, U
                 INNER JOIN donativoa DA ON US.id_usuario = DA.id_usuario
                                ";
 $tablaDetalles="SELECT US.id_usuario, US.Nombre, US.APaterno, US.AMaterno, US.Boleta, US.Programa, US.Correo, 
-                DA.nombreA, DA.estadoA
+                DA.nombreA, DA.estadoA, DA.fechaExpide,
+                DB.nombreB, DB.estadoB, DB.Fecha,
+                CO.estadoC, CO.nombreC, CO.FechaExpide 
                 FROM usuario US
                 INNER JOIN donativoa DA ON US.id_usuario = DA.id_usuario
+                INNER JOIN donativo DB ON US.id_usuario = DB.id_usuario
+                INNER JOIN constancia CO ON US.id_usuario = CO.id_usuario
+                
                ";                               
 
 
@@ -39,6 +45,8 @@ $conectarTabla2= $conecta->query($tabla2);
 $conectarTabla3= $conecta->query($tabla3);
 
 $conectarTablaDetalles=$conecta->query($tablaDetalles);
+
+
 
 
 //$cone=$conecta->query($query);
