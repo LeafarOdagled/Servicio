@@ -347,7 +347,7 @@ $mostrar = mysqli_fetch_array($result);
                                                             <script>
                                                                 function myFunction() {
                                                                     
-                                                                    document.getElementById("demo").innerHTML = ""+ document.getElementById("id-usuario").outerHTML;
+                                                                    document.getElementById("demo").innerHTML = ""+ document.getElementById($fila1['id_usuario']).outerHTML;
                                                                     
                                                                 }
                                                             </script>
@@ -357,7 +357,7 @@ $mostrar = mysqli_fetch_array($result);
 
                                                 <td class="text-center">
                                                     <div>
-                                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal">comentarios
+                                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal>">comentarios
                                                     </div>
                                                 </td>
 
@@ -645,7 +645,7 @@ $mostrar = mysqli_fetch_array($result);
 <!-- Large modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="table-responsive">
@@ -734,7 +734,7 @@ $mostrar = mysqli_fetch_array($result);
                                 <p>poner aqui los comentarios</p>
                             </td>
                             <td>
-                            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target="#modalComent">Hacer comentario</button></a>
+                            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target="#modalcoment">Hacer comentario</button></a>
                             </td>
                         </tr>
                     </tbody>
@@ -763,10 +763,10 @@ $mostrar = mysqli_fetch_array($result);
                 </button>
             </div>
             <div class="modal-body">
-                <form class="" method="POST" action="constancia.php">
+                <form class="" method="POST" action="comentario.php">
                     <div>
                         <!--<input class="controls" type="text" name="coment" id="comment" rows="10" cols="40" placeholder="comentario">-->
-                        <textarea type="text" name="coment" id="comment" rows="10" cols="40" placeholder="Escribir comentario"></textarea>
+                        <textarea class="comments" type="text" name="coment" id="comment" rows="10" cols="40" placeholder="Escribir comentario"></textarea>
                     <div>
                         <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Solicitar</button>
                     </div>
