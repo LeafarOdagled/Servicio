@@ -146,7 +146,7 @@ $mostrar = mysqli_fetch_array($result);
             </div>
         </div>
 
-        <div class="app-main">
+        <div>
 
 
 
@@ -155,228 +155,201 @@ $mostrar = mysqli_fetch_array($result);
                 <div class="app-page-title">
                     <div class="page-title-wrapper">
                         <div class="page-title-heading">
-                            <div class="page-title-icon">
-                                <i class="pe-7s-box2 icon-gradient bg-amy-crisp">
-                                </i>
-                            </div>
-                            <div>¡Hola de nuevo!
-                                <div class="page-title-subheading"> Bienvenido al sistema de biblioteca
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="page-title-actions">
-                            <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
-                                <i class="fa fa-star"></i>
-                            </button>
-                            <div class="d-inline-block dropdown">
-                                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
-                                    <span class="btn-icon-wrapper pr-2 opacity-7">
-                                        <i class="fa fa-business-time fa-w-20"></i>
-                                    </span>
-                                    Buttons
-                                </button>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a href="javascript:void(0);" class="nav-link">
-                                                <i class="nav-link-icon lnr-inbox"></i>
-                                                <span>
-                                                    Inbox
-                                                </span>
-                                                <div class="ml-auto badge badge-pill badge-secondary">86</div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="javascript:void(0);" class="nav-link">
-                                                <i class="nav-link-icon lnr-book"></i>
-                                                <span>
-                                                    Book
-                                                </span>
-                                                <div class="ml-auto badge badge-pill badge-danger">5</div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="javascript:void(0);" class="nav-link">
-                                                <i class="nav-link-icon lnr-picture"></i>
-                                                <span>
-                                                    Picture
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a disabled href="javascript:void(0);" class="nav-link disabled">
-                                                <i class="nav-link-icon lnr-file-empty"></i>
-                                                <span>
-                                                    File Disabled
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
+                            
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 col-xl-4">
-                        <!-- <div class="card mb-3 widget-content bg-midnight-bloom">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Total Orders</div>
-                                            <div class="widget-subheading">Last year expenses</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>1896</span></div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                    </div>
-                    <div class="col-md-6 col-xl-4">
-                        <!-- <div class="card mb-3 widget-content bg-arielle-smile">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Clients</div>
-                                            <div class="widget-subheading">Total Clients Profit</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>$ 568</span></div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                    </div>
-                    <div class="col-md-6 col-xl-4">
-                        <!-- <div class="card mb-3 widget-content bg-grow-early">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Followers</div>
-                                            <div class="widget-subheading">People Interested</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>46%</span></div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                    </div>
+                
 
-                </div>
-
-                <div class="row">
+                <div class="row" >
                     <div class="col-md-12">
                         <div class="main-card mb-3 card">
                             <div class="card-header">Solicitudes pendientes de constancia de no adeudo
-                                <div class="btn-actions-pane-right">
-
-                                </div>
+                                
                             </div>
-                            <div class="table-responsive">
-                                <?php $conexion = mysqli_connect('localhost', 'root', '', 'servicio'); ?>
+                            <div class="table-responsive" >
+                                            <table class="mb-0 table" >
+                                                <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Constancia</th>
+                                                    <th>Estado</th>
+                                                    <th>Detalles</th>
+                                                    <th>Comentarios</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php
+                                                 $constancia="SELECT * from constancia";
+                                                 $resultcon= mysqli_query($co,$constancia) or die('No consulta');
+                                                 while($mostrarconstancia=mysqli_fetch_array($resultcon))
+                                                {
+                                                    $nombre=$mostrarconstancia['id_usuario'];
+                                                    $idconstancia=$mostrarconstancia['id_constancia'];
+                                                    $consunombre="SELECT * from usuario where id_usuario='" . $nombre . "'";
+                                                    $resultnom= mysqli_query($co,$consunombre) or die('No consulta');
+                                                    $mostrarnombre=mysqli_fetch_array($resultnom);
+                                                    echo'<tr>
+                                                        <td>'.$mostrarnombre['Nombre'].' '.$mostrarnombre['APaterno'].' '.$mostrarnombre['AMaterno'].'</td>
+                                                        <td> Constancia de no adeudos </td>
+                                                        <td> <div class="badge badge-warning">
+                                                            <div class="widget-heading">'.$mostrarconstancia['estadoC'].'</div>
+                                                            </div>
+                                                        </td>
+                                                        <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg'.$idconstancia.'">Detalles </button>
+                                                            <div class="modal fade bd-example-modal-lg'.$idconstancia.'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg">
+                                                                    <div class="modal-content">
+                                                                        <div class="table-responsive">
+                                                                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th scope="col" class="text-center">Programa académico</th>
+                                                                                        <th scope="col" class="text-center">Fecha de solicitud</th>
+                                                                                        <th scope="col" class="text-center">Fecha de aceptación</th>
+                                                                                        <th scope="col" class="text-center">Correo</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrarnombre['Programa'].'</div>
 
-                                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="text-center"> </th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col" class="text-center">solicitud</th>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrarconstancia['FechaExpide'].'</div>
 
-                                            <th scope="col" class="text-center">Estado</th>
-                                            <th scope="col" class="text-center">Detalles</th>
-                                            <th scope="col" class="text-center">comentarios</th>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrarconstancia['FechaAcepta'].'</div>
 
-                                        </tr>
-
-                                    </thead>
-                                    <tbody>
-                                        <?php while ($fila1 = $conectarTabla1->fetch_assoc()) { ?>
-
-
-
-                                            <tr>
-                                                <td class="text-center text-muted">
-                                                    <p id="id-usuario"><?php echo $fila1['id_usuario']; ?></p></td><!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
-                                                <td>
-                                                    <!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left mr-3">
-                                                                <div class="widget-content-left">
-                                                                    <!--    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt=""><!--AQUI VA LA IMAGEN DE LA PERSONA -->
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrarnombre['Correo'].'</div>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="widget-content-left flex2">
-                                                                <div class="widget-heading"><?php echo $fila1['Nombre']; ?></div>
-                                                                <div class="widget-heading"><?php echo $fila1['APaterno']; ?></div>
-                                                                <div class="widget-heading"><?php echo $fila1['AMaterno']; ?></div>
+                                                        </td>
 
-                                                                <div class="widget-subheading opacity-7"><?php echo $fila1['Programa']; ?></div>
+                                                        <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal'.$idconstancia.'">Comentarios</button>
+                                                            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal'.$idconstancia.'">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLongTitle">Comentarios</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Comentarios realizados</th>
+                                                                                        <th> </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+
+                                                                                        <td>
+                                                                                            <p>Comentarios</p>
+                                                                                        </td>
+                                                                                        <td><button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Escribir comentario</button></a> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target=".bd-example-modal-lg">Realizar comentario</button></a>-->
+
+                                                                            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
-
-
-                                                <td class="text-center">
-                                                    <!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
-                                                    <div>
-                                                        <!--<div class="widget-heading"><?php echo $fila1['nombreC']; ?></div>-->
-                                                        <div class="widget-heading"><?php echo $fila1['nombreC']; ?></div>
-                                                        <!--<div class="widget-heading"><?php echo $fila1['nombreB']; ?></div>-->
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
-
-                                                <td class="text-center">
-                                                    <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-                                                    <div>
-                                                        <div class="badge badge-warning">
-                                                            <div class="widget-heading"><?php echo $fila1['estadoC']; ?></div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-
-                                                <td class="text-center">
-                                                    <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-                                                    <div>
-                                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">detalles
-                                                            <button onclick="myFunction()">Click me</button>
-
-                                                            <p id="demo"></p>
-
-                                                            <script>
-                                                                function myFunction() {
-                                                                    
-                                                                    document.getElementById("demo").innerHTML = ""+ document.getElementById($fila1['id_usuario']).outerHTML;
-                                                                    
-                                                                }
-                                                            </script>
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-
-                                                <td class="text-center">
-                                                    <div>
-                                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal>">comentarios
-                                                    </div>
-                                                </td>
-
-
-                                            </tr>
-
-                                        <?php } ?>
-                                        <!-- aqui inicia otra fila de la tabla -->
-
-
-                                    </tbody>
-                                </table>
+                                                        </td>
+                                                        <td>
+                                                            <button class="mb-2 mr-2 btn btn-success" data-toggle="modal" data-target="#modalAceptado'.$idconstancia.'">Aceptar</button>
+                                                                <div class="modal fade" id="modalAceptado'.$idconstancia.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <form method="POST" action="AceptarConstancia.php">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">Aceptar solicitud</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <p class="mb-0">¿Está seguro de que quiere aceptar la solicitud?</p>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <input type="hidden" name="idconstancia" value="'.$idconstancia.'">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                                    <button class="btn btn-success" type="submit">Aceptar solicitud</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="mb-2 mr-2 btn btn-danger" data-toggle="modal" data-target="#modalRechazado'.$idconstancia.'">Denegar</button>
+                                                                <div class="modal fade" id="modalRechazado'.$idconstancia.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <form method="POST" action="RechazarConstancia.php">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">Rechazar solicitud</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <p class="mb-0">¿Está seguro de que quiere rechazar la solicitud?</p>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <input type="hidden" name="idconstancia" value="'.$idconstancia.'">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                                    <button class="btn btn-danger" type="submit">Rechazar solicitud</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        </td>
+                                                    </tr>';    
+                                                }
+                                                ?>
+                                                </tbody>
+                                            </table>
                             </div>
-
-
-
                             <div class="d-block text-center card-footer">
-                                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                                <button class="btn-wide btn btn-success">Save</button>
                             </div>
                         </div>
                     </div>
@@ -392,104 +365,188 @@ $mostrar = mysqli_fetch_array($result);
 
                                 </div>
                             </div>
-                            <div class="table-responsive">
 
+                            <div class="table-responsive" >
+                                            <table class="mb-0 table" >
+                                                <thead>
+                                                <tr>
+                                                    <th>Donador</th>
+                                                    <th>Título</th>
+                                                    <th>Autor</th>
+                                                    <th>Estado</th>
+                                                    <th>Detalles</th>
+                                                    <th>Comentarios</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php
+                                                 $donativob="SELECT * from donativo";
+                                                 $resultdb= mysqli_query($co,$donativob) or die('No consulta');
+                                                 while($mostrardb=mysqli_fetch_array($resultdb))
+                                                {
+                                                    $nombredb=$mostrardb['id_usuario'];
+                                                    $iddb=$mostrardb['ID_DonB'];
+                                                    $consunombredb="SELECT * from usuario where id_usuario='" . $nombredb . "'";
+                                                    $resultnomdb= mysqli_query($co,$consunombredb) or die('No consulta');
+                                                    $mostrarnombredb=mysqli_fetch_array($resultnomdb);
+                                                    echo'<tr>
+                                                        <td>'.$mostrarnombredb['Nombre'].' '.$mostrarnombredb['APaterno'].' '.$mostrarnombredb['AMaterno'].'</td>
+                                                        <td>'.$mostrardb['Titulo'].'</td>
+                                                        <td>'.$mostrardb['Autor'].'</td>
+                                                        <td> <div class="badge badge-warning">
+                                                            <div class="widget-heading">'.$mostrardb['estadoB'].'</div>
+                                                            </div>
+                                                        </td>
+                                                        <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg'.$iddb.'">Detalles </button>
+                                                            <div class="modal fade bd-example-modal-lg'.$iddb.'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg">
+                                                                    <div class="modal-content">
+                                                                        <div class="table-responsive">
+                                                                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th scope="col" class="text-center">Programa académico del donador</th>
+                                                                                        <th scope="col" class="text-center">ISBN</th>
+                                                                                        <th scope="col" class="text-center">Pie</th>
+                                                                                        <th scope="col" class="text-center">Fecha</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrarnombredb['Programa'].'</div>
 
-                                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="text-center"> </th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col" class="text-center">solicitud</th>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrardb['ISBN'].'</div>
 
-                                            <th scope="col" class="text-center">Estado</th>
-                                            <th scope="col" class="text-center">Detalles</th>
-                                            <th scope="col" class="text-center">comentarios</th>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrardb['Pie'].'</div>
 
-                                        </tr>
-
-                                    </thead>
-                                    <tbody>
-
-                                        <?php while ($fila2 = $conectarTabla2->fetch_assoc()) { ?>
-
-
-
-                                            <tr>
-                                                <td class="text-center text-muted"><?php echo $fila2['id_usuario']; ?></td>
-                                                <!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
-                                                <td>
-                                                    <!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left mr-3">
-                                                                <div class="widget-content-left">
-                                                                    <!--    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt=""><!--AQUI VA LA IMAGEN DE LA PERSONA -->
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrardb['Fecha'].'</div>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="widget-content-left flex2">
-                                                                <div class="widget-heading"><?php echo $fila2['Nombre']; ?></div>
-                                                                <div class="widget-heading"><?php echo $fila2['APaterno']; ?></div>
-                                                                <div class="widget-heading"><?php echo $fila2['AMaterno']; ?></div>
+                                                        </td>
+                                                        <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal'.$iddb.'">Comentarios</button>
+                                                            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal'.$iddb.'">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLongTitle">Comentarios</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Comentarios realizados</th>
+                                                                                        <th> </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
 
-                                                                <div class="widget-subheading opacity-7"><?php echo $fila2['Programa']; ?></div>
+                                                                                        <td>
+                                                                                            <p>Comentarios</p>
+                                                                                        </td>
+                                                                                        <td><button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Escribir comentario</button></a> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target=".bd-example-modal-lg">Realizar comentario</button></a>-->
+
+                                                                            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
-
-
-                                                <td class="text-center">
-                                                    <!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
-                                                    <div>
-
-                                                        <div class="widget-heading"><?php echo $fila2['nombreB']; ?></div>
-
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
-
-                                                <td class="text-center">
-                                                    <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-                                                    <div>
-                                                        <div class="badge badge-warning">
-                                                            <div class="widget-heading"><?php echo $fila2['estadoB']; ?></div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-
-                                                <td class="text-center">
-                                                    <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-                                                    <div>
-                                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">detalles
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-
-                                                <td class="text-center">
-                                                    <div>
-                                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal">comentarios
-                                                    </div>
-                                                </td>
-
-
-                                            </tr>
-
-                                        <?php } ?>
-                                        <!-- aqui inicia otra fila de la tabla -->
-
-
-                                    </tbody>
-                                </table>
+                                                        </td>
+                                                        <td>
+                                                            <button class="mb-2 mr-2 btn btn-success" data-toggle="modal" data-target="#modalAceptadoB'.$iddb.'">Aceptar</button>
+                                                                <div class="modal fade" id="modalAceptadoB'.$iddb.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <form method="POST" action="AceptarDonativoB.php">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">Aceptar solicitud</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <p class="mb-0">¿Está seguro de que quiere aceptar la solicitud?</p>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <input type="hidden" name="iddb" value="'.$iddb.'">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                                    <button class="btn btn-success" type="submit">Aceptar solicitud</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="mb-2 mr-2 btn btn-danger" data-toggle="modal" data-target="#modalRechazadoB'.$iddb.'">Denegar</button>
+                                                                <div class="modal fade" id="modalRechazadoB'.$iddb.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <form method="POST" action="RechazarDonativoB.php">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">Rechazar solicitud</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <p class="mb-0">¿Está seguro de que quiere rechazar la solicitud?</p>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <input type="hidden" name="iddb" value="'.$iddb.'">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                                    <button class="btn btn-danger" type="submit">Rechazar solicitud</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        </td>
+                                                    </tr>';
+                                                    
+                                                }
+                                                ?>
+                                                </tbody>
+                                            </table>
                             </div>
-
-
-
                             <div class="d-block text-center card-footer">
-                                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                                <button class="btn-wide btn btn-success">Save</button>
+                                
                             </div>
                         </div>
                     </div>
@@ -505,106 +562,190 @@ $mostrar = mysqli_fetch_array($result);
                                 <div class="btn-actions-pane-right">
 
                                 </div>
+                                
                             </div>
-                            <div class="table-responsive">
+                            <div class="table-responsive" >
+                                            <table class="mb-0 table" >
+                                                <thead>
+                                                <tr>
+                                                    <th>Donador</th>
+                                                    <th>Tipo</th>
+                                                    <th>Estado</th>
+                                                    <th>Detalles</th>
+                                                    <th>Comentarios</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php
+                                                 $donativoa="SELECT * from donativoa";
+                                                 $resultda= mysqli_query($co,$donativoa) or die('No consulta');
+                                                 while($mostrarda=mysqli_fetch_array($resultda))
+                                                {
+                                                    $nombreda=$mostrarda['id_usuario'];
+                                                    $idda=$mostrarda['ID_DonA'];
+                                                    $consunombreda="SELECT * from usuario where id_usuario='" . $nombreda . "'";
+                                                    $resultnomda= mysqli_query($co,$consunombreda) or die('No consulta');
+                                                    $mostrarnombreda=mysqli_fetch_array($resultnomda);
+                                                    echo'<tr>
+                                                        <td>'.$mostrarnombreda['Nombre'].' '.$mostrarnombreda['APaterno'].' '.$mostrarnombreda['AMaterno'].'</td>
+                                                        <td>'.$mostrarda['tipo'].'</td>
+                                                        <td> <div class="badge badge-warning">
+                                                            <div class="widget-heading">'.$mostrarda['estadoA'].'</div>
+                                                            </div>
+                                                        </td>
+                                                        <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg'.$idda.'">Detalles </button>
+                                                            <div class="modal fade bd-example-modal-lg'.$idda.'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg">
+                                                                    <div class="modal-content">
+                                                                        <div class="table-responsive">
+                                                                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th scope="col" class="text-center">Programa académico del donador</th>
+                                                                                        <th scope="col" class="text-center">Fecha</th>
+                                                                                        <th scope="col" class="text-center">Integrantes</th>
+                                                                                        <th scope="col" class="text-center">Asesores</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrarnombreda['Programa'].'</div>
 
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrarda['fechaExpide'].'</div>
 
-                                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="text-center"> </th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col" class="text-center">solicitud</th>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrarda['integrante'].'
+                                                                                                    <br>'.$mostrarda['integrante2'].'
+                                                                                                    <br> '.$mostrarda['integrante3'].'</div>
 
-                                            <th scope="col" class="text-center">Estado</th>
-                                            <th scope="col" class="text-center">Detalles</th>
-                                            <th scope="col" class="text-center">comentarios</th>
-
-                                        </tr>
-
-                                    </thead>
-                                    <tbody>
-
-                                        <?php while ($fila3 = $conectarTabla3->fetch_assoc()) { ?>
-
-
-
-                                            <tr>
-                                                <td class="text-center text-muted"><?php echo $fila3['id_usuario']; ?></td>
-                                                <!--AQUI VA EL NUMERO DE ID DE LA PERSONA  -->
-                                                <td>
-                                                    <!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left mr-3">
-                                                                <div class="widget-content-left">
-                                                                    <!--    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt=""><!--AQUI VA LA IMAGEN DE LA PERSONA -->
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <div>
+                                                                                                    <div class="widget-heading">'.$mostrarda['asesor1'].'
+                                                                                                    <br>'.$mostrarda['asesor2'].'
+                                                                                                    <br> '.$mostrarda['asesor2'].'</div>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="widget-content-left flex2">
-                                                                <div class="widget-heading"><?php echo $fila3['Nombre']; ?></div>
-                                                                <div class="widget-heading"><?php echo $fila3['APaterno']; ?></div>
-                                                                <div class="widget-heading"><?php echo $fila3['AMaterno']; ?></div>
+                                                        </td>
+                                                        <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal'.$idda.'">Comentarios</button>
+                                                            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal'.$idda.'">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLongTitle">Comentarios</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Comentarios realizados</th>
+                                                                                        <th> </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
 
-                                                                <div class="widget-subheading opacity-7"><?php echo $fila3['Programa']; ?></div>
+                                                                                        <td>
+                                                                                            <p>Comentarios</p>
+                                                                                        </td>
+                                                                                        <td><button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Escribir comentario</button></a> </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target=".bd-example-modal-lg">Realizar comentario</button></a>-->
+
+                                                                            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARA EL NOMBRE JUNTO CON SUS IMAGENES Y CARRERA-->
-
-
-                                                <td class="text-center">
-                                                    <!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
-                                                    <div>
-
-                                                        <div class="widget-heading"><?php echo $fila3['nombreA']; ?></div>
-
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARTE DE LA FILA EN DONDE DEBEN DE IR LAS SOLICITUDES-->
-
-                                                <td class="text-center">
-                                                    <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-                                                    <div>
-                                                        <div class="badge badge-warning">
-                                                            <div class="widget-heading"><?php echo $fila3['estadoA']; ?></div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-
-                                                <td class="text-center">
-                                                    <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-                                                    <div>
-                                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">detalles
-                                                    </div>
-                                                </td>
-                                                <!--TODO ESTO ES PARTE DEL ESTADO DE LAS SOLICITUDES -->
-
-                                                <td class="text-center">
-                                                    <div>
-                                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal">comentarios
-                                                        </button>
-                                                    </div>
-                                                </td>
-
-
-                                            </tr>
-
-                                        <?php } ?>
-                                        <!-- aqui inicia otra fila de la tabla -->
-
-
-                                    </tbody>
-                                </table>
+                                                        </td>
+                                                        <td>
+                                                            <button class="mb-2 mr-2 btn btn-success" data-toggle="modal" data-target="#modalAceptadoA'.$idda.'">Aceptar</button>
+                                                                <div class="modal fade" id="modalAceptadoA'.$idda.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <form method="POST" action="AceptarDonativoA.php">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">Aceptar solicitud</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <p class="mb-0">¿Está seguro de que quiere aceptar la solicitud?</p>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <input type="hidden" name="idda" value="'.$idda.'">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                                    <button class="btn btn-success" type="submit">Aceptar solicitud</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        </td>
+                                                        <td>
+                                                            <button class="mb-2 mr-2 btn btn-danger" data-toggle="modal" data-target="#modalRechazadoA'.$idda.'">Denegar</button>
+                                                                <div class="modal fade" id="modalRechazadoA'.$idda.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <form method="POST" action="RechazarDonativoA.php">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">Rechazar solicitud</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <p class="mb-0">¿Está seguro de que quiere rechazar la solicitud?</p>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <input type="hidden" name="idda" value="'.$idda.'">
+                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                                    <button class="btn btn-danger" type="submit">Rechazar solicitud</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        </td>
+                                                    </tr>';
+                                                    
+                                                }
+                                                ?>
+                                                </tbody>
+                                            </table>
                             </div>
-
-
-
                             <div class="d-block text-center card-footer">
-                                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                                <button class="btn-wide btn btn-success">Save</button>
                             </div>
                         </div>
                     </div>
@@ -615,7 +756,7 @@ $mostrar = mysqli_fetch_array($result);
             </div>
 
 
-            <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+            
         </div>
     </div>
     <script type="text/javascript" src="./assets/scripts/main.js"></script>
@@ -641,150 +782,5 @@ $mostrar = mysqli_fetch_array($result);
         }
     }
 </script>
-
-<!-- Large modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="table-responsive">
-                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="text-center">Nombre</th>
-                            <th scope="col" class="text-center">Programa academico</th>
-                            <th scope="col" class="text-center">Solicitud</th>
-                            <th scope="col" class="text-center">Fecha de solicitud</th>
-                            <th scope="col" class="text-center">Correo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <?php while ($row = $conectarTablaDetalles->fetch_assoc()) { ?>
-                                <td class="text-center text-muted">
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">
-                                            <div class="widget-content-left flex2">
-                                                <div class="widget-heading"><?php echo $row['Nombre']; ?></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <!--TODO ESTO ES PARA EL NOMBRE -->
-                                <td class="text-center">
-                                    <div>
-                                        <div class="widget-heading"><?php echo $row['Programa']; ?></div>
-
-                                    </div>
-                                </td>
-                                <td clas="text-center">
-                                    <div>
-                                        <div class="widget-heading"><?php echo $row['nombreC']; ?></div>
-                                        <div class="widget-heading"><?php echo $row['nombreB']; ?></div>
-                                        <div class="widget-heading"><?php echo $row['nombreA']; ?></div>
-
-                                    </div>
-                                </td>
-                                <td clas="text-center">
-                                    <div>
-                                        <div class="widget-heading"><?php echo $row['FechaExpide']; ?></div>
-                                        <div class="widget-heading"><?php echo $row['Fecha']; ?></div>
-                                        <div class="widget-heading"><?php echo $row['fechaExpide']; ?></div>
-
-                                    </div>
-                                </td>
-                                <td clas="text-center">
-                                    <div>
-                                        <div class="widget-heading"><?php echo $row['Correo']; ?></div>
-                                    </div>
-                                </td>
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Comentario modal -->
-
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">comentarios</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Comentarios realizados</th>
-                            <th> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-
-                            <td>
-                                <p>poner aqui los comentarios</p>
-                            </td>
-                            <td>
-                            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target="#modalcoment">Hacer comentario</button></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-            <div class="modal-footer">
-                <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target=".bd-example-modal-lg">Comentarios realizados</button></a>-->
-
-                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
-            </div>
-
-        </div>
-    </div>
-
-</div>
-<!--  Hacer Comentario modal -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modalComent">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Hacer comentarios</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="" method="POST" action="comentario.php">
-                    <div>
-                        <!--<input class="controls" type="text" name="coment" id="comment" rows="10" cols="40" placeholder="comentario">-->
-                        <textarea class="comments" type="text" name="coment" id="comment" rows="10" cols="40" placeholder="Escribir comentario"></textarea>
-                    <div>
-                        <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Solicitar</button>
-                    </div>
-                    </div>
-                    
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target=".bd-example-modal-lg">Comentarios realizados</button></a>-->
-
-                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
-            </div>
-
-        </div>
-    </div>
-
-</div>
-
 
 </html>
