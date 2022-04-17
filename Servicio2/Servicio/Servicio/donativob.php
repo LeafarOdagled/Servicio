@@ -429,6 +429,65 @@ $mostrar = mysqli_fetch_array($result);
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                    <div class="col-md-12">
+                        <div class="main-card mb-3 card">
+                            <div class="card-header">Solicitudes de donativo
+                                <div class="btn-actions-pane-right">
+
+                                </div>
+                            </div>
+
+                            <div class="table-responsive" >
+                                            <table class="mb-0 table" >
+                                                <thead>
+                                                <tr>
+                                                    <th>Donador</th>
+                                                    <th>Título</th>
+                                                    <th>Autor</th>
+                                                    <th>Estado</th>
+
+                                                    <th>Comentarios</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php
+                                                 $donativob="SELECT * from donativo";
+                                                 $resultdb= mysqli_query($co,$donativob) or die('No consulta');
+                                                 while($mostrardb=mysqli_fetch_array($resultdb))
+                                                {
+                                                    $nombredb=$mostrardb['id_usuario'];
+                                                    $iddb=$mostrardb['ID_DonB'];
+                                                    $consunombredb="SELECT * from usuario where id_usuario='" . $nombredb . "'";
+                                                    $resultnomdb= mysqli_query($co,$consunombredb) or die('No consulta');
+                                                    $mostrarnombredb=mysqli_fetch_array($resultnomdb);
+                                                    echo'<tr>
+                                                        <td>'.$mostrarnombredb['Nombre'].' '.$mostrarnombredb['APaterno'].' '.$mostrarnombredb['AMaterno'].'</td>
+                                                        <td>'.$mostrardb['Titulo'].'</td>
+                                                        <td>'.$mostrardb['Autor'].'</td>
+                                                        <td> <div class="badge badge-warning">
+                                                            <div class="widget-heading">'.$mostrardb['estadoB'].'</div>
+                                                            </div>
+                                                        </td>
+                                                        
+                                                        
+                                                    </tr>';
+                                                    
+                                                }
+                                                ?>
+                                                </tbody>
+                                            </table>
+                            </div>
+                            <div class="d-block text-center card-footer">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- aqui termina la division de la seccion en donde van las tablas -->
+                <!-- aqui termina la division de la seccion en donde van las tablas ##################################################################################-->
+
+                <!--AQUI EMPIEZA LA OTRA TABLA  ########################################################################################################################-->
+
 
                     <div class="app-wrapper-footer">
                         <div class="app-footer">

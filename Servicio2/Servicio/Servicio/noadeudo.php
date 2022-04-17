@@ -407,6 +407,7 @@ $mostrar = mysqli_fetch_array($result);
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-md-4">
                                 <div class="widget-content">
                                     <div class="widget-content-wrapper">
@@ -429,6 +430,59 @@ $mostrar = mysqli_fetch_array($result);
                             </div>
                         </div>
                     </div>
+                    <div class="row" >
+                    <div class="col-md-12">
+                        <div class="main-card mb-3 card">
+                            <div class="card-header">Solicitudes pendientes de constancia de no adeudo
+                                
+                            </div>
+                            <div class="table-responsive" >
+                                            <table class="mb-0 table" >
+                                                <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Constancia</th>
+                                                    <th>Estado</th>
+                                                    
+                                                    <th>Comentarios</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php
+                                                 $constancia="SELECT * from constancia";
+                                                 $resultcon= mysqli_query($co,$constancia) or die('No consulta');
+                                                 while($mostrarconstancia=mysqli_fetch_array($resultcon))
+                                                {
+                                                    $nombre=$mostrarconstancia['id_usuario'];
+                                                    $idconstancia=$mostrarconstancia['id_constancia'];
+                                                    $consunombre="SELECT * from usuario where id_usuario='" . $nombre . "'";
+                                                    $resultnom= mysqli_query($co,$consunombre) or die('No consulta');
+                                                    $mostrarnombre=mysqli_fetch_array($resultnom);
+                                                    echo'<tr>
+                                                        <td>'.$mostrarnombre['Nombre'].' '.$mostrarnombre['APaterno'].' '.$mostrarnombre['AMaterno'].'</td>
+                                                        <td> Constancia de no adeudos </td>
+                                                        <td> <div class="badge badge-warning">
+                                                            <div class="widget-heading">'.$mostrarconstancia['estadoC'].'</div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                        </td>
+
+                                                        
+                                                    </tr>';    
+                                                }
+                                                ?>
+                                                </tbody>
+                                            </table>
+                            </div>
+                            <div class="d-block text-center card-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- aqui termina la division de la seccion en donde van las tablas -->
+
+                <!--AQUI EMPIEZA LA OTRA TABLA  ########################################################################################################################-->
+
 
                     <div class="app-wrapper-footer">
 

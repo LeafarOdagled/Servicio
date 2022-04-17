@@ -428,8 +428,63 @@ $mostrar = mysqli_fetch_array($result);
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
+                    <div class="row">
+                    <div class="col-md-12">
+                        <div class="main-card mb-3 card">
+                            <div class="card-header">Solicitudes Bilbleograficos
+                                <div class="btn-actions-pane-right">
+
+                                </div>
+                                
+                            </div>
+                            <div class="table-responsive" >
+                                            <table class="mb-0 table" >
+                                                <thead>
+                                                <tr>
+                                                    <th>Donador</th>
+                                                    <th>Tipo</th>
+                                                    <th>Estado</th>
+                                              
+                                                    <th>Comentarios</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php
+                                                 $donativoa="SELECT * from donativoa";
+                                                 $resultda= mysqli_query($co,$donativoa) or die('No consulta');
+                                                 while($mostrarda=mysqli_fetch_array($resultda))
+                                                {
+                                                    $nombreda=$mostrarda['id_usuario'];
+                                                    $idda=$mostrarda['ID_DonA'];
+                                                    $consunombreda="SELECT * from usuario where id_usuario='" . $nombreda . "'";
+                                                    $resultnomda= mysqli_query($co,$consunombreda) or die('No consulta');
+                                                    $mostrarnombreda=mysqli_fetch_array($resultnomda);
+                                                    echo'<tr>
+                                                        <td>'.$mostrar['Nombre'].' '.$mostrar['APaterno'].' '.$mostrar['AMaterno'].'</td>
+                                                        <td>'.$mostrarda['tipo'].'</td>
+                                                        <td> <div class="badge badge-warning">
+                                                            <div class="widget-heading">'.$mostrarda['estadoA'].'</div>
+                                                            </div>
+                                                        </td>
+                                                        
+                                                       
+                                                    </tr>';
+                                                    
+                                                }
+                                                ?>
+                                                </tbody>
+                                            </table>
+                            </div>
+                            <div class="d-block text-center card-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- aqui termina la division de la seccion en donde van las tablas -->
+                <!-- aqui termina la division de la seccion en donde van las tablas ##################################################################################-->
+
 
                     <div class="app-wrapper-footer">
                         <div class="app-footer">
