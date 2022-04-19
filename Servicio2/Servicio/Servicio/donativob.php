@@ -452,7 +452,7 @@ $mostrar = mysqli_fetch_array($result);
                                                 </thead>
                                                 <tbody>
                                                 <?php
-                                                 $donativob="SELECT * from donativo";
+                                                 $donativob="SELECT * from donativo where id_usuario='".$mostrar['id_usuario']."'";
                                                  $resultdb= mysqli_query($co,$donativob) or die('No consulta');
                                                  while($mostrardb=mysqli_fetch_array($resultdb))
                                                 {
@@ -471,8 +471,22 @@ $mostrar = mysqli_fetch_array($result);
                                                         </td>
                                                         
                                                         
-                                                    </tr>';
-                                                    
+                                                        </td>';
+
+
+                                                        if ($mostrardb['estadoB']=="Aceptado")
+                                                        {
+                                                            echo'<td><button class="mb-2 mr-2 btn btn-success">Descargar
+                                                            </button></td>';
+
+                                                        }
+                                                        else
+                                                        {
+                                                            echo'<td> </td>';
+                                                        }
+ 
+                                                        
+                                                    '</tr>';    
                                                 }
                                                 ?>
                                                 </tbody>

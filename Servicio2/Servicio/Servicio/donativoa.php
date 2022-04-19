@@ -453,7 +453,7 @@ $mostrar = mysqli_fetch_array($result);
                                                 </thead>
                                                 <tbody>
                                                 <?php
-                                                 $donativoa="SELECT * from donativoa";
+                                                 $donativoa="SELECT * from donativoa where id_usuario='".$mostrar['id_usuario']."'";
                                                  $resultda= mysqli_query($co,$donativoa) or die('No consulta');
                                                  while($mostrarda=mysqli_fetch_array($resultda))
                                                 {
@@ -463,7 +463,7 @@ $mostrar = mysqli_fetch_array($result);
                                                     $resultnomda= mysqli_query($co,$consunombreda) or die('No consulta');
                                                     $mostrarnombreda=mysqli_fetch_array($resultnomda);
                                                     echo'<tr>
-                                                        <td>'.$mostrar['Nombre'].' '.$mostrar['APaterno'].' '.$mostrar['AMaterno'].'</td>
+                                                        <td>'.$mostrarnombreda['Nombre'].' '.$mostrarnombreda['APaterno'].' '.$mostrarnombreda['AMaterno'].'</td>
                                                         <td>'.$mostrarda['tipo'].'</td>
                                                         <td> <div class="badge badge-warning">
                                                             <div class="widget-heading">'.$mostrarda['estadoA'].'</div>
@@ -471,8 +471,22 @@ $mostrar = mysqli_fetch_array($result);
                                                         </td>
                                                         
                                                        
-                                                    </tr>';
-                                                    
+                                                        </td>';
+
+
+                                                        if ($mostrarda['estadoA']=="Aceptado")
+                                                        {
+                                                            echo'<td><button class="mb-2 mr-2 btn btn-success">Descargar
+                                                            </button></td>';
+
+                                                        }
+                                                        else
+                                                        {
+                                                            echo'<td> </td>';
+                                                        }
+ 
+                                                        
+                                                    '</tr>';    
                                                 }
                                                 ?>
                                                 </tbody>

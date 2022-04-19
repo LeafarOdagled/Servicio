@@ -449,7 +449,8 @@ $mostrar = mysqli_fetch_array($result);
                                                 </thead>
                                                 <tbody>
                                                 <?php
-                                                 $constancia="SELECT * from constancia";
+                                                
+                                                 $constancia="SELECT * from constancia where id_usuario='".$mostrar['id_usuario']."'";
                                                  $resultcon= mysqli_query($co,$constancia) or die('No consulta');
                                                  while($mostrarconstancia=mysqli_fetch_array($resultcon))
                                                 {
@@ -466,10 +467,22 @@ $mostrar = mysqli_fetch_array($result);
                                                             </div>
                                                         </td>
                                                         <td>
-                                                        </td>
+                                                        </td>';
 
+
+                                                        if ($mostrarconstancia['estadoC']=="Aceptado")
+                                                        {
+                                                            echo'<td><button class="mb-2 mr-2 btn btn-success">Descargar
+                                                            </button></td>';
+
+                                                        }
+                                                        else
+                                                        {
+                                                            echo'<td> </td>';
+                                                        }
+ 
                                                         
-                                                    </tr>';    
+                                                    '</tr>';    
                                                 }
                                                 ?>
                                                 </tbody>

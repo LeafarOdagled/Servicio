@@ -266,28 +266,31 @@ $mostrar = mysqli_fetch_array($result);
                                                                             <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Comentarios realizados</th>
+                                                                                        <th>Comentarios </th>
                                                                                         <th> </th>
                                                                                     </tr>
                                                                                 </thead>
+                                                                                <form class="" method="POST" action="HacerComentarios.php">
                                                                                 <tbody>
                                                                                     <tr>
 
                                                                                         <td>
-                                                                                            <p>Comentarios</p>
+                                                                                            <p>escribe tu comentario</p>
                                                                                         </td>
-                                                                                        <td><button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Escribir comentario</button></a> </td>
+                                                                                        <td>
+                                                                                            <div class="position-relative form-group"><label  class=""></label><input name="comentario" type="texto" class="form-control"></div>
+                                                                                        </td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
 
                                                                         </div>
-
-                                                                        <div class="modal-footer">
-                                                                            <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target=".bd-example-modal-lg">Realizar comentario</button></a>-->
-
-                                                                            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
-                                                                        </div>
+                                                                            
+                                                                            <div class="modal-footer">
+                                                                                <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Escribir comentario</button>
+                                                                                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
+                                                                                </form>
+                                                                            </div>
 
                                                                     </div>
                                                                 </div>
@@ -461,28 +464,31 @@ $mostrar = mysqli_fetch_array($result);
                                                                             <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Comentarios realizados</th>
+                                                                                        <th>Comentarios </th>
                                                                                         <th> </th>
                                                                                     </tr>
                                                                                 </thead>
+                                                                                <form class="" method="POST" action="HacerComentarios.php">
                                                                                 <tbody>
                                                                                     <tr>
 
                                                                                         <td>
-                                                                                            <p>Comentarios</p>
+                                                                                            <p>escribe tu comentario</p>
                                                                                         </td>
-                                                                                        <td><button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Escribir comentario</button></a> </td>
+                                                                                        <td>
+                                                                                            <div class="position-relative form-group"><label  class=""></label><input name="comentario" type="texto" class="form-control"></div>
+                                                                                        </td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
 
                                                                         </div>
-
-                                                                        <div class="modal-footer">
-                                                                            <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target=".bd-example-modal-lg">Realizar comentario</button></a>-->
-
-                                                                            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
-                                                                        </div>
+                                                                            
+                                                                            <div class="modal-footer">
+                                                                                <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Escribir comentario</button>
+                                                                                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
+                                                                                </form>
+                                                                            </div>
 
                                                                     </div>
                                                                 </div>
@@ -661,28 +667,31 @@ $mostrar = mysqli_fetch_array($result);
                                                                             <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Comentarios realizados</th>
+                                                                                        <th>Comentarios </th>
                                                                                         <th> </th>
                                                                                     </tr>
                                                                                 </thead>
+                                                                                <form class="" method="POST" action="HacerComentarios.php">
                                                                                 <tbody>
                                                                                     <tr>
 
                                                                                         <td>
-                                                                                            <p>Comentarios</p>
+                                                                                            <p>escribe tu comentario</p>
                                                                                         </td>
-                                                                                        <td><button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Escribir comentario</button></a> </td>
+                                                                                        <td>
+                                                                                            <div class="position-relative form-group"><label  class=""></label><input name="comentario" type="texto" class="form-control"></div>
+                                                                                        </td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
 
                                                                         </div>
-
-                                                                        <div class="modal-footer">
-                                                                            <!--<button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target=".bd-example-modal-lg">Realizar comentario</button></a>-->
-
-                                                                            <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
-                                                                        </div>
+                                                                            
+                                                                            <div class="modal-footer">
+                                                                                <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Escribir comentario</button>
+                                                                                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
+                                                                                </form>
+                                                                            </div>
 
                                                                     </div>
                                                                 </div>
