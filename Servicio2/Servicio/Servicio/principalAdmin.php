@@ -270,7 +270,7 @@ $mostrar = mysqli_fetch_array($result);
                                                                                         <th> </th>
                                                                                     </tr>
                                                                                 </thead>
-                                                                                <form class="" method="POST" action="HacerComentarios.php">
+                                                                                <form class="" method="POST" action="HacerComentariosC.php">
                                                                                 <tbody>
                                                                                     <tr>
 
@@ -278,7 +278,8 @@ $mostrar = mysqli_fetch_array($result);
                                                                                             <p>escribe tu comentario</p>
                                                                                         </td>
                                                                                         <td>
-                                                                                            <div class="position-relative form-group"><label  class=""></label><input name="comentario" type="texto" class="form-control"></div>
+                                                                                            <div class="position-relative form-group"><label  class=""></label><input name="Comentario" type="texto" class="form-control"></div>
+                                                                                            <input type="hidden" name="idconstancia" value="'.$idconstancia.'">
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
@@ -468,7 +469,7 @@ $mostrar = mysqli_fetch_array($result);
                                                                                         <th> </th>
                                                                                     </tr>
                                                                                 </thead>
-                                                                                <form class="" method="POST" action="HacerComentarios.php">
+                                                                                <form class="" method="POST" action="HacerComentariosB.php">
                                                                                 <tbody>
                                                                                     <tr>
 
@@ -476,7 +477,8 @@ $mostrar = mysqli_fetch_array($result);
                                                                                             <p>escribe tu comentario</p>
                                                                                         </td>
                                                                                         <td>
-                                                                                            <div class="position-relative form-group"><label  class=""></label><input name="comentario" type="texto" class="form-control"></div>
+                                                                                            <div class="position-relative form-group"><label  class=""></label><input name="Comentario" type="texto" class="form-control"></div>
+                                                                                            <input type="hidden" name="iddb" value="'.$iddb.'">
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
@@ -671,7 +673,7 @@ $mostrar = mysqli_fetch_array($result);
                                                                                         <th> </th>
                                                                                     </tr>
                                                                                 </thead>
-                                                                                <form class="" method="POST" action="HacerComentarios.php">
+                                                                                <form class="" method="POST" action="HacerComentariosA.php">
                                                                                 <tbody>
                                                                                     <tr>
 
@@ -679,7 +681,8 @@ $mostrar = mysqli_fetch_array($result);
                                                                                             <p>escribe tu comentario</p>
                                                                                         </td>
                                                                                         <td>
-                                                                                            <div class="position-relative form-group"><label  class=""></label><input name="comentario" type="texto" class="form-control"></div>
+                                                                                            <div class="position-relative form-group"><label  class=""></label><input name="Comentario" type="texto" class="form-control"></div>
+                                                                                            <input type="hidden" name="idda" value="'.$idda.'">
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>

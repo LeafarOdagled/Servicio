@@ -443,7 +443,6 @@ $mostrar = mysqli_fetch_array($result);
                                                     <th>Nombre</th>
                                                     <th>Constancia</th>
                                                     <th>Estado</th>
-                                                    
                                                     <th>Comentarios</th>
                                                 </tr>
                                                 </thead>
@@ -467,8 +466,9 @@ $mostrar = mysqli_fetch_array($result);
                                                             </div>
                                                         </td>
                                                         <td>
+                                                        '.$mostrarconstancia['ComentarioC'].'
                                                         </td>';
-
+                                                        
 
                                                         if ($mostrarconstancia['estadoC']=="Aceptado")
                                                         {

@@ -455,6 +455,9 @@ $mostrar = mysqli_fetch_array($result);
                                                 <?php
                                                  $donativoa="SELECT * from donativoa where id_usuario='".$mostrar['id_usuario']."'";
                                                  $resultda= mysqli_query($co,$donativoa) or die('No consulta');
+
+
+
                                                  while($mostrarda=mysqli_fetch_array($resultda))
                                                 {
                                                     $nombreda=$mostrarda['id_usuario'];
@@ -472,7 +475,8 @@ $mostrar = mysqli_fetch_array($result);
                                                         
                                                        
                                                         </td>';
-
+                                                        
+                                                        echo'<td> '.$mostrarda['ComentarioA'].'</td>';
 
                                                         if ($mostrarda['estadoA']=="Aceptado")
                                                         {

@@ -469,10 +469,9 @@ $mostrar = mysqli_fetch_array($result);
                                                             <div class="widget-heading">'.$mostrardb['estadoB'].'</div>
                                                             </div>
                                                         </td>
-                                                        
-                                                        
                                                         </td>';
 
+                                                        echo'<td> '.$mostrardb['ComentarioB'].'</td>';
 
                                                         if ($mostrardb['estadoB']=="Aceptado")
                                                         {
