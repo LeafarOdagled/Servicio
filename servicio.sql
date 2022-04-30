@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-03-2022 a las 06:57:45
+-- Tiempo de generación: 01-05-2022 a las 00:30:55
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -33,17 +33,20 @@ CREATE TABLE `constancia` (
   `FechaAcepta` date NOT NULL,
   `estadoC` varchar(15) NOT NULL DEFAULT 'pendiente',
   `id_usuario` int(11) DEFAULT NULL,
-  `nombreC` varchar(50) NOT NULL DEFAULT 'constancia de no adeudo'
+  `nombreC` varchar(50) NOT NULL DEFAULT 'constancia de no adeudo',
+  `ComentarioC` varchar(500) NOT NULL,
+  `NoConstancia` int(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `constancia`
 --
 
-INSERT INTO `constancia` (`id_constancia`, `FechaExpide`, `FechaAcepta`, `estadoC`, `id_usuario`, `nombreC`) VALUES
-(20, '2022-03-02', '0000-00-00', 'Pendiente', 1, 'constancia de no adeudo'),
-(23, '2022-03-03', '0000-00-00', 'Pendiente', 1, 'constancia de no adeudo'),
-(24, '2022-03-04', '0000-00-00', 'Pendiente', 13, 'constancia de no adeudo');
+INSERT INTO `constancia` (`id_constancia`, `FechaExpide`, `FechaAcepta`, `estadoC`, `id_usuario`, `nombreC`, `ComentarioC`, `NoConstancia`) VALUES
+(20, '2022-03-02', '2022-04-30', 'Aceptado', 1, 'constancia de no adeudo', 'juan paco pedro de la mar', 0),
+(23, '2022-03-03', '2022-04-14', 'Aceptado', 1, 'constancia de no adeudo', 'a', 0),
+(24, '2022-03-04', '0000-00-00', 'Rechazado', 13, 'constancia de no adeudo', '', 0),
+(25, '2022-04-20', '0000-00-00', 'Rechazado', 1, 'constancia de no adeudo', 'no porque eres joto', 0);
 
 -- --------------------------------------------------------
 
@@ -61,15 +64,17 @@ CREATE TABLE `donativo` (
   `FechaAceptado` date NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `nombreB` varchar(50) NOT NULL DEFAULT 'Donativo Bibliográfico ',
-  `estadoB` varchar(25) NOT NULL DEFAULT 'Pendiente'
+  `estadoB` varchar(25) NOT NULL DEFAULT 'Pendiente',
+  `ComentarioB` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `donativo`
 --
 
-INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `Pie`, `Fecha`, `FechaAceptado`, `id_usuario`, `nombreB`, `estadoB`) VALUES
-(14, 'wasd', 'wasd', 'wasd', 'wasd', '2022-03-02', '0000-00-00', 1, 'Donativo Bibliográfico ', 'Pendiente');
+INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `Pie`, `Fecha`, `FechaAceptado`, `id_usuario`, `nombreB`, `estadoB`, `ComentarioB`) VALUES
+(14, 'wasd', 'wasd', 'wasd', 'wasd', '2022-03-02', '2022-04-16', 1, 'Donativo Bibliográfico ', 'Aceptado', 'hijoesuputamadre'),
+(15, 'asdasd', 'asdasd', 'asda', 'asdasd', '2022-04-16', '0000-00-00', 13, 'Donativo Bibliográfico ', 'Pendiente', '');
 
 -- --------------------------------------------------------
 
@@ -90,15 +95,50 @@ CREATE TABLE `donativoa` (
   `fechaExpide` date NOT NULL DEFAULT current_timestamp(),
   `fechaAceptado` date NOT NULL,
   `nombreA` varchar(50) NOT NULL DEFAULT 'Donativo Académico ',
-  `estadoA` varchar(25) NOT NULL DEFAULT 'Pendiente'
+  `estadoA` varchar(25) NOT NULL DEFAULT 'Pendiente',
+  `ComentarioA` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `donativoa`
 --
 
-INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `asesor1`, `asesor2`, `asesor3`, `id_usuario`, `fechaExpide`, `fechaAceptado`, `nombreA`, `estadoA`) VALUES
-(11, 'wasd', 'Rafael Delgado Calzada', 'wasd', 'NULL', 'wasd', 'NULL', 'NULL', 1, '2022-03-02', '0000-00-00', 'Donativo Académico ', 'Pendiente');
+INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `asesor1`, `asesor2`, `asesor3`, `id_usuario`, `fechaExpide`, `fechaAceptado`, `nombreA`, `estadoA`, `ComentarioA`) VALUES
+(11, 'wasd', 'Rafael Delgado Calzada', 'wasd', 'NULL', 'wasd', 'NULL', 'NULL', 1, '2022-03-02', '2022-04-21', 'Donativo Académico ', 'Aceptado', 'y chingho a mi madre si no jala '),
+(12, 'dasd', 'juan paco pedro', 'dsad', 'dsada', 'asdda', 'NULL', 'NULL', 13, '2022-04-16', '0000-00-00', 'Donativo Académico ', 'Pendiente', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `eventos_admin`
+--
+
+CREATE TABLE `eventos_admin` (
+  `ID_evento` int(11) NOT NULL,
+  `nombreEvento` varchar(100) NOT NULL,
+  `tiempoEvento` int(11) NOT NULL,
+  `fechaEvento` date NOT NULL,
+  `creadorEvento` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `eventos_admin`
+--
+
+INSERT INTO `eventos_admin` (`ID_evento`, `nombreEvento`, `tiempoEvento`, `fechaEvento`, `creadorEvento`) VALUES
+(1, 'Creación de mazapanes', 2, '2022-03-17', 'Yo'),
+(2, 'Tutorial de como no morir de sobrepeso', 3, '2022-03-08', 'Rafa'),
+(3, 'dadsdadsa', 0, '0000-00-00', ''),
+(4, 'Bodega Aurrera VS Wallmart', 2, '2000-03-22', 'Bodega Aurrera VS Wallmart'),
+(5, 'Me quiero morir .png\r\n', 0, '0000-00-00', ''),
+(6, 'Bodega Aurrera VS Wallmart 2', 2, '2000-03-22', 'DANI'),
+(7, 'Bodega Aurrera VS Wallmart 3', 2, '2000-03-22', 'DANI'),
+(8, 'Bodega Aurrera VS Wallmart 4', 4, '2000-03-22', 'DANI'),
+(9, 'Bodega Aurrera VS Wallmart 5', 4, '2022-03-17', 'DANI'),
+(10, 'Bodega Aurrera VS Wallmart 6', 8, '2022-03-11', 'DANI'),
+(11, 'Bodega Aurrera VS Wallmart 7', 8, '2022-04-04', 'DANI'),
+(12, 'UAZ Vs COBEZ', 10, '2022-04-06', 'DANI'),
+(13, 'Y somos amigos', 2, '2022-03-31', 'DANI');
 
 -- --------------------------------------------------------
 
@@ -127,7 +167,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_usuario`, `Nombre`, `APaterno`, `AMaterno`, `Boleta`, `Programa`, `Contra`, `Correo`, `Sexo`, `id_constancia`, `ID_DonA`, `ID_DonB`) VALUES
 (1, 'Rafael', 'Delgado', 'Calzada', 2019670203, 'Sistemas', 'karencia', 'rdelgado1801@alumno.ipn.mx', 'masculino', NULL, NULL, NULL),
-(13, 'juan', 'paco', 'pedro', 2019670204, 'Sistemas', 'karencia', 'rdeelgado1801@alumno.ipn.mx', 'masculino', NULL, NULL, NULL);
+(13, 'juan', 'paco', 'pedro', 2019670204, 'Sistemas', 'karencia', 'juan', 'masculino', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -177,6 +217,12 @@ ALTER TABLE `donativoa`
   ADD KEY `ID_Donante` (`id_usuario`);
 
 --
+-- Indices de la tabla `eventos_admin`
+--
+ALTER TABLE `eventos_admin`
+  ADD PRIMARY KEY (`ID_evento`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -199,19 +245,25 @@ ALTER TABLE `usuarioad`
 -- AUTO_INCREMENT de la tabla `constancia`
 --
 ALTER TABLE `constancia`
-  MODIFY `id_constancia` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_constancia` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `donativo`
 --
 ALTER TABLE `donativo`
-  MODIFY `ID_DonB` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID_DonB` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `donativoa`
 --
 ALTER TABLE `donativoa`
-  MODIFY `ID_DonA` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID_DonA` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `eventos_admin`
+--
+ALTER TABLE `eventos_admin`
+  MODIFY `ID_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`

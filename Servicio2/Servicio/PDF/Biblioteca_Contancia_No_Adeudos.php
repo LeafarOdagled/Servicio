@@ -18,17 +18,18 @@
         $numeroConstancia=$numeroConstancia;
     }
     //Variables que se van a ocupar para los datos del alumno
-    $nombreAlumno=strtoupper("Adamary Itzel Dayna Montiel Nuñez");  
+    $nombreAlumno=strtoupper("Adamary Itzel Dayna Montiel Nuñez");//aqui va la variable del nombre en la tabal usuario
     $nombreAlumnoMayuscula=remplazoMayuscula($nombreAlumno);
-    $boletaAlumno='2019670151';
-    $carrera='Ingenieria en Sistemas Computacionales';     
-    $Sexo='Hombre';
+    $boletaAlumno='2019670151';//aqui va la variable del boleta en la tabal usuario
+    $carrera='Ingenieria en Sistemas Computacionales';    //aqui va la variable del carrera en la tabal usuario 
+    $Sexo='Hombre';//aqui va la variable del sexo en la tabal usuario 
     if($Sexo=='Hombre'){ 
         $Sexo='egresado';
     }else{
         $Sexo='egresada';
     }
-    require('/xampp/htdocs/Servicio_Social/Librerias/html_table.php');
+
+    require('/xampp/htdocs/servicio/Servicio2/Servicio/Librerias/html_table.php');
     $pdf =new PDF("p","mm","letter");
     $pdf->AddPage();
     //Cabecera  

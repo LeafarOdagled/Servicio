@@ -472,8 +472,24 @@ $mostrar = mysqli_fetch_array($result);
 
                                                         if ($mostrarconstancia['estadoC']=="Aceptado")
                                                         {
+                                                            echo'<form class="" method="POST" action="ExpideConstancia.php">';
                                                             echo'<td><button class="mb-2 mr-2 btn btn-success">Descargar
                                                             </button></td>';
+                                                            echo'
+                                                            <input type="hidden" name="idconstancia" value="'.$idconstancia.'">
+                                                            <input type="hidden" name="Programa" value="'.$mostrarnombre['Programa'].'">
+                                                            <input type="hidden" name="Nombre" value="'.$mostrarnombre['Nombre'].'">
+                                                            <input type="hidden" name="APaterno" value="'.$mostrarnombre['APaterno'].'">
+                                                            <input type="hidden" name="AMaterno" value="'.$mostrarnombre['AMaterno'].'">
+                                                            <input type="hidden" name="sexo" value="'.$mostrarnombre['Sexo'].'">
+                                                            <input type="hidden" name="fechae" value="'.$mostrarconstancia['FechaExpide'].'">
+                                                            <input type="hidden" name="fechaa" value="'.$mostrarconstancia['FechaAcepta'].'">
+                                                            
+                                                            
+                                                            ';
+
+
+                                                            echo' </form>';
 
                                                         }
                                                         else

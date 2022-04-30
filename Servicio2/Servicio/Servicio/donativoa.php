@@ -480,8 +480,26 @@ $mostrar = mysqli_fetch_array($result);
 
                                                         if ($mostrarda['estadoA']=="Aceptado")
                                                         {
+                                                            echo'<form class="" method="POST" action="ExpideAcademico.php">';
                                                             echo'<td><button class="mb-2 mr-2 btn btn-success">Descargar
                                                             </button></td>';
+                                                            echo'
+                                                            <input type="hidden" name="idda" value="'.$idda.'">
+                                                            <input type="hidden" name="Programa" value="'.$mostrarnombreda['Programa'].'">
+                                                            <input type="hidden" name="Nombre" value="'.$mostrarnombreda['Nombre'].'">
+                                                            <input type="hidden" name="APaterno" value="'.$mostrarnombreda['APaterno'].'">
+                                                            <input type="hidden" name="AMaterno" value="'.$mostrarnombreda['AMaterno'].'">
+                                                            <input type="hidden" name="sexo" value="'.$mostrarnombreda['Sexo'].'">
+                                                            <input type="hidden" name="fechae" value="'.$mostrarda['fechaExpide'].'">
+                                                            <input type="hidden" name="fechaa" value="'.$mostrarda['fechaAceptado'].'">
+                                                            <input type="hidden" name="integrante2" value="'.$mostrarda['integrante2'].'">
+                                                            <input type="hidden" name="integrante3" value="'.$mostrarda['integrante3'].'">
+                                                            <input type="hidden" name="asesor1" value="'.$mostrarda['asesor1'].'">
+                                                            <input type="hidden" name="asesor2" value="'.$mostrarda['asesor2'].'">
+                                                            <input type="hidden" name="asesor3" value="'.$mostrarda['asesor3'].'">
+                                                            
+                                                            
+                                                            ';
 
                                                         }
                                                         else

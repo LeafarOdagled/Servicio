@@ -475,8 +475,26 @@ $mostrar = mysqli_fetch_array($result);
 
                                                         if ($mostrardb['estadoB']=="Aceptado")
                                                         {
+                                                            echo'<form class="" method="POST" action="ExpideBibleografico.php">';
                                                             echo'<td><button class="mb-2 mr-2 btn btn-success">Descargar
                                                             </button></td>';
+                                                            echo'
+                                                            <input type="hidden" name="iddb" value="'.$iddb.'">
+                                                            <input type="hidden" name="Programa" value="'.$mostrarnombredb['Programa'].'">
+                                                            <input type="hidden" name="Nombre" value="'.$mostrarnombredb['Nombre'].'">
+                                                            <input type="hidden" name="APaterno" value="'.$mostrarnombredb['APaterno'].'">
+                                                            <input type="hidden" name="AMaterno" value="'.$mostrarnombredb['AMaterno'].'">
+                                                            <input type="hidden" name="sexo" value="'.$mostrarnombredb['Sexo'].'">
+                                                            <input type="hidden" name="fechae" value="'.$mostrardb['Fecha'].'">
+                                                            <input type="hidden" name="fechaa" value="'.$mostrardb['FechaAceptado'].'">
+                                                            <input type="hidden" name="ISBN" value="'.$mostrardb['ISBN'].'">
+                                                            <input type="hidden" name="pie" value="'.$mostrardb['Pie'].'">
+                                                            <input type="hidden" name="titulo" value="'.$mostrardb['Titulo'].'">
+                                                            <input type="hidden" name="autor" value="'.$mostrardb['Autor'].'">
+
+                                                            
+                                                            
+                                                            ';
 
                                                         }
                                                         else
