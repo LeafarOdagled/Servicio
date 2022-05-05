@@ -137,7 +137,7 @@ $mostrar = mysqli_fetch_array($result);
                 </div>
             </div>
         </div>
-        
+
         <div class="app-main">
             <div class="app-sidebar sidebar-shadow">
                 <div class="app-header__logo">
@@ -421,9 +421,10 @@ $mostrar = mysqli_fetch_array($result);
 
                                         </div>
                                         <div class="widget-content-left">
-                                            <button class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-target="#ModalS">Donación
+                                            <button onClick="agregarInput()" class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-target="#Modal">Donación
 
                                             </button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -432,94 +433,98 @@ $mostrar = mysqli_fetch_array($result);
                         </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-12">
-                        <div class="main-card mb-3 card">
-                            <div class="card-header">Solicitudes Bilbleograficos
-                                <div class="btn-actions-pane-right">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">Solicitudes Bilbleograficos
+                                    <div class="btn-actions-pane-right">
+
+                                    </div>
 
                                 </div>
-                                
-                            </div>
-                            <div class="table-responsive" >
-                                            <table class="mb-0 table" >
-                                                <thead>
-                                                <tr>
-                                                    <th>Donador</th>
-                                                    <th>Tipo</th>
-                                                    <th>Estado</th>
-                                              
-                                                    <th>Comentarios</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php
-                                                 $donativoa="SELECT * from donativoa where id_usuario='".$mostrar['id_usuario']."'";
-                                                 $resultda= mysqli_query($co,$donativoa) or die('No consulta');
+                                <div class="table-responsive">
+                                    <table class="mb-0 table">
+                                        
+                                        <tbody>
+                                            <?php
+                                            $donativoa = "SELECT * from donativoa where id_usuario='" . $mostrar['id_usuario'] . "'";
+                                            $resultda = mysqli_query($co, $donativoa) or die('No consulta');
+                                            if (mysqli_num_rows($resultda) == 0) {
+                                                echo '<div class="card-body"><h5 class="card-title">Sin solicitudes</h5>
+                                                     Cuándo solicite, aparecerá la información aquí.
+                                                     </div>';
+                                            } else {
+                                                
+                                                    echo'
+                                                    
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th>Nombre</th>
+                                                                            <th>Constancia</th>
+                                                                            <th>Estado</th>
+                                                                            <th>Comentarios</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        ';
 
 
 
-                                                 while($mostrarda=mysqli_fetch_array($resultda))
-                                                {
-                                                    $nombreda=$mostrarda['id_usuario'];
-                                                    $idda=$mostrarda['ID_DonA'];
-                                                    $consunombreda="SELECT * from usuario where id_usuario='" . $nombreda . "'";
-                                                    $resultnomda= mysqli_query($co,$consunombreda) or die('No consulta');
-                                                    $mostrarnombreda=mysqli_fetch_array($resultnomda);
-                                                    echo'<tr>
-                                                        <td>'.$mostrarnombreda['Nombre'].' '.$mostrarnombreda['APaterno'].' '.$mostrarnombreda['AMaterno'].'</td>
-                                                        <td>'.$mostrarda['tipo'].'</td>
+                                                while ($mostrarda = mysqli_fetch_array($resultda)) {
+                                                    $nombreda = $mostrarda['id_usuario'];
+                                                    $idda = $mostrarda['ID_DonA'];
+                                                    $consunombreda = "SELECT * from usuario where id_usuario='" . $nombreda . "'";
+                                                    $resultnomda = mysqli_query($co, $consunombreda) or die('No consulta');
+                                                    $mostrarnombreda = mysqli_fetch_array($resultnomda);
+                                                    echo '<tr>
+                                                        <td>' . $mostrarnombreda['Nombre'] . ' ' . $mostrarnombreda['APaterno'] . ' ' . $mostrarnombreda['AMaterno'] . '</td>
+                                                        <td>' . $mostrarda['tipo'] . '</td>
                                                         <td> <div class="badge badge-warning">
-                                                            <div class="widget-heading">'.$mostrarda['estadoA'].'</div>
+                                                            <div class="widget-heading">' . $mostrarda['estadoA'] . '</div>
                                                             </div>
                                                         </td>
                                                         
                                                        
                                                         </td>';
-                                                        
-                                                        echo'<td> '.$mostrarda['ComentarioA'].'</td>';
 
-                                                        if ($mostrarda['estadoA']=="Aceptado")
-                                                        {
-                                                            echo'<form class="" method="POST" action="ExpideAcademico.php">';
-                                                            echo'<td><button class="mb-2 mr-2 btn btn-success">Descargar
+                                                    echo '<td> ' . $mostrarda['ComentarioA'] . '</td>';
+
+                                                    if ($mostrarda['estadoA'] == "Aceptado") {
+                                                        echo '<td><button class="mb-2 mr-2 btn btn-success">Descargar
                                                             </button></td>';
-                                                            echo'
-                                                            <input type="hidden" name="idda" value="'.$idda.'">
-                                                            <input type="hidden" name="Programa" value="'.$mostrarnombreda['Programa'].'">
-                                                            <input type="hidden" name="Nombre" value="'.$mostrarnombreda['Nombre'].'">
-                                                            <input type="hidden" name="APaterno" value="'.$mostrarnombreda['APaterno'].'">
-                                                            <input type="hidden" name="AMaterno" value="'.$mostrarnombreda['AMaterno'].'">
-                                                            <input type="hidden" name="sexo" value="'.$mostrarnombreda['Sexo'].'">
-                                                            <input type="hidden" name="fechae" value="'.$mostrarda['fechaExpide'].'">
-                                                            <input type="hidden" name="fechaa" value="'.$mostrarda['fechaAceptado'].'">
-                                                            <input type="hidden" name="integrante2" value="'.$mostrarda['integrante2'].'">
-                                                            <input type="hidden" name="integrante3" value="'.$mostrarda['integrante3'].'">
-                                                            <input type="hidden" name="asesor1" value="'.$mostrarda['asesor1'].'">
-                                                            <input type="hidden" name="asesor2" value="'.$mostrarda['asesor2'].'">
-                                                            <input type="hidden" name="asesor3" value="'.$mostrarda['asesor3'].'">
+                                                        echo '
+                                                            <input type="hidden" name="idda" value="' . $idda . '">
+                                                            <input type="hidden" name="Programa" value="' . $mostrarnombreda['Programa'] . '">
+                                                            <input type="hidden" name="Nombre" value="' . $mostrarnombreda['Nombre'] . '">
+                                                            <input type="hidden" name="APaterno" value="' . $mostrarnombreda['APaterno'] . '">
+                                                            <input type="hidden" name="AMaterno" value="' . $mostrarnombreda['AMaterno'] . '">
+                                                            <input type="hidden" name="sexo" value="' . $mostrarnombreda['Sexo'] . '">
+                                                            <input type="hidden" name="fechae" value="' . $mostrarda['fechaExpide'] . '">
+                                                            <input type="hidden" name="fechaa" value="' . $mostrarda['fechaAceptado'] . '">
+                                                            <input type="hidden" name="integrante2" value="' . $mostrarda['integrante2'] . '">
+                                                            <input type="hidden" name="integrante3" value="' . $mostrarda['integrante3'] . '">
+                                                            <input type="hidden" name="asesor1" value="' . $mostrarda['asesor1'] . '">
+                                                            <input type="hidden" name="asesor2" value="' . $mostrarda['asesor2'] . '">
+                                                            <input type="hidden" name="asesor3" value="' . $mostrarda['asesor3'] . '">
                                                             
                                                             
                                                             ';
+                                                    } else {
+                                                        echo '<td> </td>';
+                                                    }
 
-                                                        }
-                                                        else
-                                                        {
-                                                            echo'<td> </td>';
-                                                        }
- 
-                                                        
-                                                    '</tr>';    
+
+                                                    '</tr>';
                                                 }
-                                                ?>
-                                                </tbody>
-                                            </table>
-                            </div>
-                            <div class="d-block text-center card-footer">
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-block text-center card-footer">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div><!-- aqui termina la division de la seccion en donde van las tablas -->
-                <!-- aqui termina la division de la seccion en donde van las tablas ##################################################################################-->
+                    </div><!-- aqui termina la division de la seccion en donde van las tablas -->
+                    <!-- aqui termina la division de la seccion en donde van las tablas ##################################################################################-->
 
 
                     <div class="app-wrapper-footer">
@@ -569,11 +574,11 @@ $mostrar = mysqli_fetch_array($result);
 </html>
 <!--  modal grupal -->
 
-<div class="modal fade" id="ModalG" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="overflow:scroll;height: 600px;width: 500px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Trabajo grupal</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Donativo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -590,17 +595,116 @@ $mostrar = mysqli_fetch_array($result);
                         </div>
                     </div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Programa académico</label><input name="pacademico" id="exampleAddress" type="text" class="form-control"></div>
+                    <select>
+                    <option value="value1">Value 1</option>
+                    <option value="value2" selected>Value 2</option>
+                    <option value="value3">Value 3</option>
+                    </select>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo de donación</label><input name="tipo" id="exampleAddress" type="text" class="form-control"></div>
-                    Escriba el resto de los integrantes del equipo sin contarse a usted mismo. De no ocupar un espacio, puede dejarlo en blanco:
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Integrante 1: </label><input name="i1" id="exampleAddress" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Integrante 2: </label><input name="i2" id="exampleAddress" type="text" class="form-control"></div>
+                    <p>Número de integrantes:</p>
 
-                    Escriba los asesores que formaron parte de su TT. De no ocupar un espacio, puede dejarlo en blanco:
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 1:</label><input name="ass1" id="exampleAddress" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 2:</label><input name="ass2" id="exampleAddress" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 3:</label><input name="ass3" id="exampleAddress" type="text" class="form-control"></div>
-                    <p>poner los siguientes documentos en un pdf que no exeda el peso de 2MB </p>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">archivo</label> <input type="file" id="exampleAddress" name="archivo1"></div>
+                    <div class="position-relative form-group">
+                        <div>
+                            <div class="custom-radio custom-control">
+                                <input type="radio" onClick="agregarInputInt()" checked="checked" id="integrante1" name="integrantes" class="custom-control-input">
+                                <label class="custom-control-label" for="integrante1">1 (Unicamente usted. No hace falta introducir su nombre)</label>
+                            </div>
+                            <div class="custom-radio custom-control">
+                                <input type="radio" onClick="agregarInputInt()" id="integrante2" name="integrantes" class="custom-control-input">
+                                <label class="custom-control-label" for="integrante2">2</label>
+                            </div>
+                            <div class="custom-radio custom-control">
+                                <input type="radio" onClick="agregarInputInt()" id="integrante3" name="integrantes" class="custom-control-input">
+                                <label class="custom-control-label" for="integrante3">3</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="mostrarInt2" class="position-relative form-group">
+                        <p>Introduzca los nombres de los integrantes sin contarse a usted</p>
+                        <label for="exampleAddress" class="">Segundo integrante:</label>
+                        <input name="i1" id="exampleAddress" type="text" class="form-control">
+                    </div>
+                    <div id="mostrarInt3" class="position-relative form-group">
+                        <label for="exampleAddress" class="">Tercer integrante:</label>
+                        <input name="i2" id="exampleAddress" type="text" class="form-control">
+                    </div>
+
+                    <script>
+                        function agregarInputInt() {
+                            if (document.getElementById("integrante1").checked) {
+                                document.getElementById("mostrarInt2").style.display = 'none';
+                                document.getElementById("mostrarInt3").style.display = 'none';
+                            } else if (document.getElementById("integrante2").checked) {
+                                document.getElementById("mostrarInt2").style.display = 'block';
+                                document.getElementById("mostrarInt3").style.display = 'none';
+                            } else if (document.getElementById("integrante3").checked) {
+                                document.getElementById("mostrarInt2").style.display = 'block';
+                                document.getElementById("mostrarInt3").style.display = 'block';
+                            }
+
+                        }
+                    </script>
+                    Número de asesores:
+                    <div class="position-relative form-group">
+                        <div>
+                            <div class="custom-radio custom-control">
+                                <input type="radio" onClick="agregarInputAs()" checked="checked" id="asesor1" name="asesores" class="custom-control-input">
+                                <label class="custom-control-label" for="asesor1">1</label>
+                            </div>
+                            <div class="custom-radio custom-control">
+                                <input type="radio" onClick="agregarInputAs()" id="asesor2" name="asesores" class="custom-control-input">
+                                <label class="custom-control-label" for="asesor2">2</label>
+                            </div>
+                            <div class="custom-radio custom-control">
+                                <input type="radio" onClick="agregarInputAs()" id="asesor3" name="asesores" class="custom-control-input">
+                                <label class="custom-control-label" for="asesor3">3</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mostrarAss" class="position-relative form-group">
+                        <p>Introduzca los nombres de los asesores</p>
+                        <label for="exampleAddress" class="">Primer asesor:</label>
+                        <input name="ass1" id="exampleAddress" type="text" class="form-control">
+                    </div>
+                    <div id="mostrarAss2" class="position-relative form-group">
+                        <label for="exampleAddress" class="">Segundo asesor:</label>
+                        <input name="ass2" id="exampleAddress" type="text" class="form-control">
+                    </div>
+                    <div id="mostrarAss3" class="position-relative form-group">
+                        <label for="exampleAddress" class="">Tercer asesor:</label>
+                        <input name="ass3" id="exampleAddress" type="text" class="form-control">
+                    </div>
+
+                    <script>
+                        function agregarInput() {
+
+                            document.getElementById("mostrarInt2").style.display = 'none';
+                            document.getElementById("mostrarInt3").style.display = 'none';
+                            document.getElementById("mostrarAss").style.display = 'block';
+                            document.getElementById("mostrarAss2").style.display = 'none';
+                            document.getElementById("mostrarAss3").style.display = 'none';
+                        }
+
+                        function agregarInputAs() {
+                            if (document.getElementById("asesor1").checked) {
+                                document.getElementById("mostrarAss").style.display = 'block';
+                                document.getElementById("mostrarAss2").style.display = 'none';
+                                document.getElementById("mostrarAss3").style.display = 'none';
+                            } else if (document.getElementById("asesor2").checked) {
+                                document.getElementById("mostrarAss").style.display = 'block';
+                                document.getElementById("mostrarAss2").style.display = 'block';
+                                document.getElementById("mostrarAss3").style.display = 'none';
+                            } else if (document.getElementById("asesor3").checked) {
+                                document.getElementById("mostrarAss").style.display = 'block';
+                                document.getElementById("mostrarAss2").style.display = 'block';
+                                document.getElementById("mostrarAss3").style.display = 'block';
+                            }
+                        }
+                    </script>
+
+                    <p>Suba el documento en PDF sin exceder los 2MB</p>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Archivo</label> <input type="file" id="exampleAddress" name="archivo1"></div>
                 </div>
 
 
@@ -610,84 +714,6 @@ $mostrar = mysqli_fetch_array($result);
                     <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
                 </div>
             </form>
-        </div>
-    </div>
-</div>
-
-<!--  modal individual -->
-
-<div class="modal fade" id="ModalI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Trabajo individual</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form class="" method="POST" action="AcademicoDI.php">
-                <div class="modal-body">
-                    <p>Ingrese los datos que se le solicitan</p>
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <div class="position-relative form-group"><label for="exampleEmail11" class="">Boleta</label><input name="boleta" type="texto" class="form-control"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="position-relative form-group"><label for="examplePassword11" class="">Contraseña</label><input name="password" id="examplePassword11" type="password" class="form-control"></div>
-                        </div>
-                    </div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Programa académico</label><input name="pacademico" id="exampleAddress" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo de donación</label><input name="tipo" id="exampleAddress" type="text" class="form-control"></div>
-                    <!-- esto es para los asesores-->
-                    Escriba los asesores que formaron parte de su TT. De no ocupar un espacio, puede dejarlo en blanco:
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 1:</label><input name="ass1" id="exampleAddress" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 2:</label><input name="ass2" id="exampleAddress" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Asesor 3:</label><input name="ass3" id="exampleAddress" type="text" class="form-control"></div>
-                    <p>poner los siguientes documentos en un pdf que no exeda el peso de 2MB </p>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">archivo</label> <input type="file" id="exampleAddress" name="archivo1"></div>
-                </div>
-
-
-
-                <div class="modal-footer">
-                    <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Donar</button>
-                    <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Small modal -->
-
-<div class="modal fade bd-example-modal-sm" id="ModalS" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Donación</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <p>Seleccione la opcion correspondiente con su situacion</p>
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target="#ModalG">trabajo grupal</a>
-
-                    </div>
-                    <div class="col-md-6">
-                        <button class="mb-2 mr-2 btn-transition btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target="#ModalI">Trabajo individual</a>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="modal-footer">
-                <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
-            </div>
-
         </div>
     </div>
 </div>

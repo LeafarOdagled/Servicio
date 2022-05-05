@@ -137,7 +137,7 @@ $mostrar = mysqli_fetch_array($result);
                 </div>
             </div>
         </div>
-        
+
         <div class="app-main">
             <div class="app-sidebar sidebar-shadow">
                 <div class="app-header__logo">
@@ -430,94 +430,101 @@ $mostrar = mysqli_fetch_array($result);
                         </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-12">
-                        <div class="main-card mb-3 card">
-                            <div class="card-header">Solicitudes de donativo
-                                <div class="btn-actions-pane-right">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">Solicitudes de donativo
+                                    <div class="btn-actions-pane-right">
 
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="table-responsive" >
-                                            <table class="mb-0 table" >
-                                                <thead>
-                                                <tr>
-                                                    <th>Donador</th>
-                                                    <th>Título</th>
-                                                    <th>Autor</th>
-                                                    <th>Estado</th>
+                                <div class="table-responsive">
+                                    <table class="mb-0 table">
 
-                                                    <th>Comentarios</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php
-                                                 $donativob="SELECT * from donativo where id_usuario='".$mostrar['id_usuario']."'";
-                                                 $resultdb= mysqli_query($co,$donativob) or die('No consulta');
-                                                 while($mostrardb=mysqli_fetch_array($resultdb))
-                                                {
-                                                    $nombredb=$mostrardb['id_usuario'];
-                                                    $iddb=$mostrardb['ID_DonB'];
-                                                    $consunombredb="SELECT * from usuario where id_usuario='" . $nombredb . "'";
-                                                    $resultnomdb= mysqli_query($co,$consunombredb) or die('No consulta');
-                                                    $mostrarnombredb=mysqli_fetch_array($resultnomdb);
-                                                    echo'<tr>
-                                                        <td>'.$mostrarnombredb['Nombre'].' '.$mostrarnombredb['APaterno'].' '.$mostrarnombredb['AMaterno'].'</td>
-                                                        <td>'.$mostrardb['Titulo'].'</td>
-                                                        <td>'.$mostrardb['Autor'].'</td>
+                                        <tbody>
+                                            <?php
+                                            $donativob = "SELECT * from donativo where id_usuario='" . $mostrar['id_usuario'] . "'";
+                                            $resultdb = mysqli_query($co, $donativob) or die('No consulta');
+                                            if (mysqli_num_rows($resultdb) == 0) {
+                                                echo '<div class="card-body"><h5 class="card-title">Sin solicitudes</h5>
+                                                         Cuándo solicite, aparecerá la información aquí.
+                                                         </div>';
+                                            } else {
+
+                                                echo '
+                                                        
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Donador</th>
+                                                            <th>Título</th>
+                                                            <th>Autor</th>
+                                                            <th>Estado</th>
+        
+                                                            <th>Comentarios</th>
+                                                        </tr>
+                                                        </thead>
+                                                                            ';
+
+
+                                                while ($mostrardb = mysqli_fetch_array($resultdb)) {
+                                                    $nombredb = $mostrardb['id_usuario'];
+                                                    $iddb = $mostrardb['ID_DonB'];
+                                                    $consunombredb = "SELECT * from usuario where id_usuario='" . $nombredb . "'";
+                                                    $resultnomdb = mysqli_query($co, $consunombredb) or die('No consulta');
+                                                    $mostrarnombredb = mysqli_fetch_array($resultnomdb);
+                                                    echo '<tr>
+                                                        <td>' . $mostrarnombredb['Nombre'] . ' ' . $mostrarnombredb['APaterno'] . ' ' . $mostrarnombredb['AMaterno'] . '</td>
+                                                        <td>' . $mostrardb['Titulo'] . '</td>
+                                                        <td>' . $mostrardb['Autor'] . '</td>
                                                         <td> <div class="badge badge-warning">
-                                                            <div class="widget-heading">'.$mostrardb['estadoB'].'</div>
+                                                            <div class="widget-heading">' . $mostrardb['estadoB'] . '</div>
                                                             </div>
                                                         </td>
                                                         </td>';
 
-                                                        echo'<td> '.$mostrardb['ComentarioB'].'</td>';
+                                                    echo '<td> ' . $mostrardb['ComentarioB'] . '</td>';
 
-                                                        if ($mostrardb['estadoB']=="Aceptado")
-                                                        {
-                                                            echo'<form class="" method="POST" action="ExpideBibleografico.php">';
-                                                            echo'<td><button class="mb-2 mr-2 btn btn-success">Descargar
+                                                    if ($mostrardb['estadoB'] == "Aceptado") {
+                                                        echo '<td><button class="mb-2 mr-2 btn btn-success">Descargar
                                                             </button></td>';
-                                                            echo'
-                                                            <input type="hidden" name="iddb" value="'.$iddb.'">
-                                                            <input type="hidden" name="Programa" value="'.$mostrarnombredb['Programa'].'">
-                                                            <input type="hidden" name="Nombre" value="'.$mostrarnombredb['Nombre'].'">
-                                                            <input type="hidden" name="APaterno" value="'.$mostrarnombredb['APaterno'].'">
-                                                            <input type="hidden" name="AMaterno" value="'.$mostrarnombredb['AMaterno'].'">
-                                                            <input type="hidden" name="sexo" value="'.$mostrarnombredb['Sexo'].'">
-                                                            <input type="hidden" name="fechae" value="'.$mostrardb['Fecha'].'">
-                                                            <input type="hidden" name="fechaa" value="'.$mostrardb['FechaAceptado'].'">
-                                                            <input type="hidden" name="ISBN" value="'.$mostrardb['ISBN'].'">
-                                                            <input type="hidden" name="pie" value="'.$mostrardb['Pie'].'">
-                                                            <input type="hidden" name="titulo" value="'.$mostrardb['Titulo'].'">
-                                                            <input type="hidden" name="autor" value="'.$mostrardb['Autor'].'">
+                                                        echo '
+                                                            <input type="hidden" name="iddb" value="' . $iddb . '">
+                                                            <input type="hidden" name="Programa" value="' . $mostrarnombredb['Programa'] . '">
+                                                            <input type="hidden" name="Nombre" value="' . $mostrarnombredb['Nombre'] . '">
+                                                            <input type="hidden" name="APaterno" value="' . $mostrarnombredb['APaterno'] . '">
+                                                            <input type="hidden" name="AMaterno" value="' . $mostrarnombredb['AMaterno'] . '">
+                                                            <input type="hidden" name="sexo" value="' . $mostrarnombredb['Sexo'] . '">
+                                                            <input type="hidden" name="fechae" value="' . $mostrardb['Fecha'] . '">
+                                                            <input type="hidden" name="fechaa" value="' . $mostrardb['FechaAceptado'] . '">
+                                                            <input type="hidden" name="ISBN" value="' . $mostrardb['ISBN'] . '">
+                                                            <input type="hidden" name="pie" value="' . $mostrardb['Pie'] . '">
+                                                            <input type="hidden" name="titulo" value="' . $mostrardb['Titulo'] . '">
+                                                            <input type="hidden" name="autor" value="' . $mostrardb['Autor'] . '">
 
                                                             
                                                             
                                                             ';
+                                                    } else {
+                                                        echo '<td> </td>';
+                                                    }
 
-                                                        }
-                                                        else
-                                                        {
-                                                            echo'<td> </td>';
-                                                        }
- 
-                                                        
-                                                    '</tr>';    
+
+                                                    '</tr>';
                                                 }
-                                                ?>
-                                                </tbody>
-                                            </table>
-                            </div>
-                            <div class="d-block text-center card-footer">
-                                
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-block text-center card-footer">
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div><!-- aqui termina la division de la seccion en donde van las tablas -->
-                <!-- aqui termina la division de la seccion en donde van las tablas ##################################################################################-->
+                    </div><!-- aqui termina la division de la seccion en donde van las tablas -->
+                    <!-- aqui termina la division de la seccion en donde van las tablas ##################################################################################-->
 
-                <!--AQUI EMPIEZA LA OTRA TABLA  ########################################################################################################################-->
+                    <!--AQUI EMPIEZA LA OTRA TABLA  ########################################################################################################################-->
 
 
                     <div class="app-wrapper-footer">
