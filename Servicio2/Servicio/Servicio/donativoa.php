@@ -443,7 +443,7 @@ $mostrar = mysqli_fetch_array($result);
                                 </div>
                                 <div class="table-responsive">
                                     <table class="mb-0 table">
-                                        
+
                                         <tbody>
                                             <?php
                                             $donativoa = "SELECT * from donativoa where id_usuario='" . $mostrar['id_usuario'] . "'";
@@ -453,8 +453,8 @@ $mostrar = mysqli_fetch_array($result);
                                                      Cuándo solicite, aparecerá la información aquí.
                                                      </div>';
                                             } else {
-                                                
-                                                    echo'
+
+                                                echo '
                                                     
                                                                         <thead>
                                                                         <tr>
@@ -594,31 +594,39 @@ $mostrar = mysqli_fetch_array($result);
                             <div class="position-relative form-group"><label for="examplePassword11" class="">Contraseña</label><input name="password" id="examplePassword11" type="password" class="form-control"></div>
                         </div>
                     </div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Programa académico</label><input name="pacademico" id="exampleAddress" type="text" class="form-control"></div>
-                    <select>
-                    <option value="value1">Value 1</option>
-                    <option value="value2" selected>Value 2</option>
-                    <option value="value3">Value 3</option>
+                    <p>Programa academico</p>
+                    <select id="carrera" placeholder="Mecatronica" class="form-control" type="text" name="pacademico"> 
+                        <option value="Mecatronica">Mecatronica</option>
+                        <option value="Sistemas" selected>Sistemas Computacionales</option>
+                        <option value="Alimentos">Alimentos</option>
+                        <option value="Metalurgia">Metalurgia</option>
+                        <option value="Ambiental">Ambiental</option>
                     </select>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Tipo de donación</label><input name="tipo" id="exampleAddress" type="text" class="form-control"></div>
+
+                    <p>tipo de donacion</p>
+                    <select name="tipo" id="exampleAddress" placeholder="Mecatronica" class="form-control" type="text"> 
+                        <option value=""></option>
+                        <option value="" selected>poner el tipo de doncacion</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+
                     <p>Número de integrantes:</p>
 
-                    <div class="position-relative form-group">
-                        <div>
-                            <div class="custom-radio custom-control">
-                                <input type="radio" onClick="agregarInputInt()" checked="checked" id="integrante1" name="integrantes" class="custom-control-input">
-                                <label class="custom-control-label" for="integrante1">1 (Unicamente usted. No hace falta introducir su nombre)</label>
-                            </div>
-                            <div class="custom-radio custom-control">
-                                <input type="radio" onClick="agregarInputInt()" id="integrante2" name="integrantes" class="custom-control-input">
-                                <label class="custom-control-label" for="integrante2">2</label>
-                            </div>
-                            <div class="custom-radio custom-control">
-                                <input type="radio" onClick="agregarInputInt()" id="integrante3" name="integrantes" class="custom-control-input">
-                                <label class="custom-control-label" for="integrante3">3</label>
-                            </div>
-                        </div>
-                    </div>
+
+                    <select name="num" id="numero"  class="form-control" type="text" onChange="agregarInputInt()"> 
+                        <option value="1" selected>(Unicamente usted. No hace falta introducir su nombre)</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                        <option value="5">4</option>
+                        <option value="4">5</option>
+                        <option value="5">6</option>
+                        <option value="6">7</option>
+
+
+                    </select>
 
                     <div id="mostrarInt2" class="position-relative form-group">
                         <p>Introduzca los nombres de los integrantes sin contarse a usted</p>
@@ -629,19 +637,104 @@ $mostrar = mysqli_fetch_array($result);
                         <label for="exampleAddress" class="">Tercer integrante:</label>
                         <input name="i2" id="exampleAddress" type="text" class="form-control">
                     </div>
+                    <div id="mostrarInt4" class="position-relative form-group">
+                        <label for="exampleAddress" class="">Cuarto integrante:</label>
+                        <input name="i3" id="exampleAddress" type="text" class="form-control">
+                    </div>
+                    <div id="mostrarInt5" class="position-relative form-group">
+                        <label for="exampleAddress" class="">Quinto integrante:</label>
+                        <input name="i4" id="exampleAddress" type="text" class="form-control">
+                    </div>
+                    <div id="mostrarInt6" class="position-relative form-group">
+                        <label for="exampleAddress" class="">Sexto integrante:</label>
+                        <input name="i5" id="exampleAddress" type="text" class="form-control">
+                    </div>
+                    <div id="mostrarInt7" class="position-relative form-group">
+                        <label for="exampleAddress" class="">Septimo integrante:</label>
+                        <input name="i6" id="exampleAddress" type="text" class="form-control">
+                    </div>
+                    <div id="mostrarInt8" class="position-relative form-group">
+                        <label for="exampleAddress" class="">Octavo integrante:</label>
+                        <input name="i7" id="exampleAddress" type="text" class="form-control">
+                    </div>
 
                     <script>
                         function agregarInputInt() {
-                            if (document.getElementById("integrante1").checked) {
+                               
+                               var a2 = document.getElementById("numero").selectedIndex;
+
+                               
+                            if (a2 == 0) {
                                 document.getElementById("mostrarInt2").style.display = 'none';
                                 document.getElementById("mostrarInt3").style.display = 'none';
-                            } else if (document.getElementById("integrante2").checked) {
+                                document.getElementById("mostrarInt4").style.display = 'none';
+                                document.getElementById("mostrarInt5").style.display = 'none';
+                                document.getElementById("mostrarInt6").style.display = 'none';
+                                document.getElementById("mostrarInt7").style.display = 'none';
+                                document.getElementById("mostrarInt8").style.display = 'none';
+                            } else if (a2 == 1) {
                                 document.getElementById("mostrarInt2").style.display = 'block';
                                 document.getElementById("mostrarInt3").style.display = 'none';
-                            } else if (document.getElementById("integrante3").checked) {
+                                document.getElementById("mostrarInt4").style.display = 'none';
+                                document.getElementById("mostrarInt5").style.display = 'none';
+                                document.getElementById("mostrarInt6").style.display = 'none';
+                                document.getElementById("mostrarInt7").style.display = 'none';
+                                document.getElementById("mostrarInt8").style.display = 'none';
+                            } else if (a2 == 2) {
                                 document.getElementById("mostrarInt2").style.display = 'block';
                                 document.getElementById("mostrarInt3").style.display = 'block';
+                                document.getElementById("mostrarInt4").style.display = 'none';
+                                document.getElementById("mostrarInt5").style.display = 'none';
+                                document.getElementById("mostrarInt6").style.display = 'none';
+                                document.getElementById("mostrarInt7").style.display = 'none';
+                                document.getElementById("mostrarInt8").style.display = 'none';
                             }
+                            else if (a2 == 3) {
+                                document.getElementById("mostrarInt2").style.display = 'block';
+                                document.getElementById("mostrarInt3").style.display = 'block';
+                                document.getElementById("mostrarInt4").style.display = 'block';
+                                document.getElementById("mostrarInt5").style.display = 'none';
+                                document.getElementById("mostrarInt6").style.display = 'none';
+                                document.getElementById("mostrarInt7").style.display = 'none';
+                                document.getElementById("mostrarInt8").style.display = 'none';
+                            }
+                            else if (a2 == 4) {
+                                document.getElementById("mostrarInt2").style.display = 'block';
+                                document.getElementById("mostrarInt3").style.display = 'block';
+                                document.getElementById("mostrarInt4").style.display = 'block';
+                                document.getElementById("mostrarInt5").style.display = 'block';
+                                document.getElementById("mostrarInt6").style.display = 'none';
+                                document.getElementById("mostrarInt7").style.display = 'none';
+                                document.getElementById("mostrarInt8").style.display = 'none';
+                            }
+                            else if (a2 == 5) {
+                                document.getElementById("mostrarInt2").style.display = 'block';
+                                document.getElementById("mostrarInt3").style.display = 'block';
+                                document.getElementById("mostrarInt4").style.display = 'block';
+                                document.getElementById("mostrarInt5").style.display = 'block';
+                                document.getElementById("mostrarInt6").style.display = 'block';
+                                document.getElementById("mostrarInt7").style.display = 'none';
+                                document.getElementById("mostrarInt8").style.display = 'none';
+                            }
+                            else if (a2 == 6) {
+                                document.getElementById("mostrarInt2").style.display = 'block';
+                                document.getElementById("mostrarInt3").style.display = 'block';
+                                document.getElementById("mostrarInt4").style.display = 'block';
+                                document.getElementById("mostrarInt5").style.display = 'block';
+                                document.getElementById("mostrarInt6").style.display = 'block';
+                                document.getElementById("mostrarInt7").style.display = 'block';
+                                document.getElementById("mostrarInt8").style.display = 'none';
+                            }
+                            else if (a2 == 7) {
+                                document.getElementById("mostrarInt2").style.display = 'block';
+                                document.getElementById("mostrarInt3").style.display = 'block';
+                                document.getElementById("mostrarInt4").style.display = 'block';
+                                document.getElementById("mostrarInt5").style.display = 'block';
+                                document.getElementById("mostrarInt6").style.display = 'block';
+                                document.getElementById("mostrarInt7").style.display = 'block';
+                                document.getElementById("mostrarInt8").style.display = 'block';
+                            }
+                            
 
                         }
                     </script>
@@ -681,6 +774,11 @@ $mostrar = mysqli_fetch_array($result);
 
                             document.getElementById("mostrarInt2").style.display = 'none';
                             document.getElementById("mostrarInt3").style.display = 'none';
+                            document.getElementById("mostrarInt4").style.display = 'none';
+                            document.getElementById("mostrarInt5").style.display = 'none';
+                            document.getElementById("mostrarInt6").style.display = 'none';
+                            document.getElementById("mostrarInt7").style.display = 'none';
+                            document.getElementById("mostrarInt8").style.display = 'none';
                             document.getElementById("mostrarAss").style.display = 'block';
                             document.getElementById("mostrarAss2").style.display = 'none';
                             document.getElementById("mostrarAss3").style.display = 'none';
