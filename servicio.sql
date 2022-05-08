@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2022 a las 00:30:55
+-- Tiempo de generación: 08-05-2022 a las 22:59:49
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.2
 
@@ -45,7 +45,6 @@ CREATE TABLE `constancia` (
 INSERT INTO `constancia` (`id_constancia`, `FechaExpide`, `FechaAcepta`, `estadoC`, `id_usuario`, `nombreC`, `ComentarioC`, `NoConstancia`) VALUES
 (20, '2022-03-02', '2022-04-30', 'Aceptado', 1, 'constancia de no adeudo', 'juan paco pedro de la mar', 0),
 (23, '2022-03-03', '2022-04-14', 'Aceptado', 1, 'constancia de no adeudo', 'a', 0),
-(24, '2022-03-04', '0000-00-00', 'Rechazado', 13, 'constancia de no adeudo', '', 0),
 (25, '2022-04-20', '0000-00-00', 'Rechazado', 1, 'constancia de no adeudo', 'no porque eres joto', 0);
 
 -- --------------------------------------------------------
@@ -73,8 +72,7 @@ CREATE TABLE `donativo` (
 --
 
 INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `Pie`, `Fecha`, `FechaAceptado`, `id_usuario`, `nombreB`, `estadoB`, `ComentarioB`) VALUES
-(14, 'wasd', 'wasd', 'wasd', 'wasd', '2022-03-02', '2022-04-16', 1, 'Donativo Bibliográfico ', 'Aceptado', 'hijoesuputamadre'),
-(15, 'asdasd', 'asdasd', 'asda', 'asdasd', '2022-04-16', '0000-00-00', 13, 'Donativo Bibliográfico ', 'Pendiente', '');
+(14, 'wasd', 'wasd', 'wasd', 'wasd', '2022-03-02', '2022-04-16', 1, 'Donativo Bibliográfico ', 'Aceptado', 'hijoesuputamadre');
 
 -- --------------------------------------------------------
 
@@ -88,6 +86,11 @@ CREATE TABLE `donativoa` (
   `integrante` varchar(50) NOT NULL,
   `integrante2` varchar(50) DEFAULT NULL,
   `integrante3` varchar(30) DEFAULT NULL,
+  `integrante4` varchar(50) DEFAULT NULL,
+  `integrante5` varchar(50) DEFAULT NULL,
+  `integrante6` varchar(50) DEFAULT NULL,
+  `integrante7` varchar(50) DEFAULT NULL,
+  `integrante8` varchar(50) DEFAULT NULL,
   `asesor1` varchar(15) NOT NULL,
   `asesor2` varchar(15) DEFAULT NULL,
   `asesor3` varchar(15) DEFAULT NULL,
@@ -98,14 +101,6 @@ CREATE TABLE `donativoa` (
   `estadoA` varchar(25) NOT NULL DEFAULT 'Pendiente',
   `ComentarioA` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `donativoa`
---
-
-INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `asesor1`, `asesor2`, `asesor3`, `id_usuario`, `fechaExpide`, `fechaAceptado`, `nombreA`, `estadoA`, `ComentarioA`) VALUES
-(11, 'wasd', 'Rafael Delgado Calzada', 'wasd', 'NULL', 'wasd', 'NULL', 'NULL', 1, '2022-03-02', '2022-04-21', 'Donativo Académico ', 'Aceptado', 'y chingho a mi madre si no jala '),
-(12, 'dasd', 'juan paco pedro', 'dsad', 'dsada', 'asdda', 'NULL', 'NULL', 13, '2022-04-16', '0000-00-00', 'Donativo Académico ', 'Pendiente', '');
 
 -- --------------------------------------------------------
 
@@ -257,7 +252,7 @@ ALTER TABLE `donativo`
 -- AUTO_INCREMENT de la tabla `donativoa`
 --
 ALTER TABLE `donativoa`
-  MODIFY `ID_DonA` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID_DonA` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos_admin`

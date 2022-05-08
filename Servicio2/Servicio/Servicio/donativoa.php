@@ -808,7 +808,7 @@ $mostrar = mysqli_fetch_array($result);
 
 
                 <div class="modal-footer">
-                    <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success">Donar</button>
+                    <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success" enctype="multipart/form-data">Donar</button>
                     <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
                 </div>
             </form>
