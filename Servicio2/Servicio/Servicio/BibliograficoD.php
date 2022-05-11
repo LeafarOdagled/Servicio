@@ -4,7 +4,10 @@ $pass = $_POST['password'];
 $titulo =$_POST['titulo'];
 $autor =$_POST['autor'];
 $ISBN =$_POST['isbn'];
-$pie =$_POST['pie'];
+$anio =$_POST['anio'];
+$editorial =$_POST['editorial'];
+
+
 
 
 $co=mysqli_connect('localhost','root') or die('NO');
@@ -21,8 +24,8 @@ if($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
         $fecha=date('y-m-j');
         $fechaAceptado=null;
 
-        $consultar="INSERT INTO donativo(Titulo, Autor, ISBN, Pie, id_usuario, Fecha, FechaAceptado ) VALUES
-        ('".$titulo."','".$autor."', '".$ISBN."', '".$pie."', '".$row['id_usuario']."', '".$fecha."','".$fechaAceptado."');"; 
+        $consultar="INSERT INTO donativo(Titulo, Autor, ISBN, anio, editorial, id_usuario, Fecha, FechaAceptado ) VALUES
+        ('".$titulo."','".$autor."', '".$ISBN."','".$anio."','".$editorial."', '".$row['id_usuario']."', '".$fecha."','".$fechaAceptado."');"; 
         
         $result2= mysqli_query($co,$consultar) or die('No consulta');
         

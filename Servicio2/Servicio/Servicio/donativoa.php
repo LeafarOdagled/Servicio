@@ -594,36 +594,121 @@ $mostrar = mysqli_fetch_array($result);
                             <div class="position-relative form-group"><label for="examplePassword11" class="">Contraseña</label><input name="password" id="examplePassword11" type="password" class="form-control"></div>
                         </div>
                     </div>
+                    
                     <p>Programa academico</p>
-                    <select id="carrera" placeholder="Mecatronica" class="form-control" type="text" name="pacademico"> 
-                        <option value="Mecatronica">Mecatronica</option>
-                        <option value="Sistemas" selected>Sistemas Computacionales</option>
-                        <option value="Alimentos">Alimentos</option>
-                        <option value="Metalurgia">Metalurgia</option>
-                        <option value="Ambiental">Ambiental</option>
+
+                    <select id="ProgramaAcademico" name="PrograAcademico" class="form-control" type="text" onChange="SeleccionarDonativo()"> 
+                        <option value="1">Mecatronica</option>
+                        <option value="2" selected>Sistemas Computacionales</option>
+                        <option value="3">Alimentos</option>
+                        <option value="4">Metalurgia</option>
+                        <option value="5">Ambiental</option>
                     </select>
 
-                    <p>tipo de donacion</p>
-                    <select name="tipo" id="exampleAddress" placeholder="Mecatronica" class="form-control" type="text"> 
-                        <option value=""></option>
-                        <option value="" selected>poner el tipo de doncacion</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
+                    
+                    <select name="Dmeca" id="DonacionMecatronica" placeholder="Mecatronica" class="form-control" type="text"> 
+                        <p>tipo de donativo</p>
+                        <option value="Tesis">Tesis</option>
+                        <option value="Memoria">Memoria de experiencia profesional</option>
+                        <option value="Seminario">Seminario de titulación</option>
+                        <option value="Practicas">Práctica profesional</option>
+                        <option value="TT">Trabajo Terminal</option>
+
                     </select>
+                    <select name="Dsiste" id="DoncionSistemas"  class="form-control" type="text"> 
+                        <option value="Tesis">Tesis</option>
+                        <option value="Memoria">Memoria de experiencia profesional</option>
+                        <option value="Seminario">Seminario de titulación</option>
+                        <option value="Practicas">Práctica profesional</option>
+                        <option value="TT">Trabajo Terminal</option>
+                    </select>
+                    <select name="Dali" id="DonacionAlimentos"  class="form-control" type="text"> 
+                        <option value="Tesis">Tesis</option>
+                        <option value="Memoria">Memoria de experiencia profesional</option>
+                        <option value="Seminario">Seminario de titulación</option>
+                        <option value="Practicas">Práctica profesional</option>
+                        <option value="Estancia">Estancia de titulacion</option>
+
+                    </select>
+                    <select name="Dmetal" id="DonacionAmbiental"  class="form-control" type="text"> 
+                        <option value="Tesis">Tesis</option>
+                        <option value="Memoria">Memoria de experiencia profesional</option>
+                        <option value="Seminario">Seminario de titulación</option>
+                        <option value="Practicas">Práctica profesional</option>
+                        <option value="Estancia">Estancia de titulacion</option>
+
+                    </select>
+                    <select name="Dambient" id="DonacionMetalurgia" " class="form-control" type="text"> 
+                        <option value="Tesis">Tesis</option>
+                        <option value="Memoria">Memoria de experiencia profesional</option>
+                        <option value="Seminario">Seminario de titulación</option>
+                        <option value="Practicas">Práctica profesional</option>
+                        <option value="PT">Proyecto terminal</option>
+
+                    </select>
+                    <script>
+                        function SeleccionarDonativo() {
+
+                            var a2 = document.getElementById("ProgramaAcademico").selectedIndex;
+                            window.alert(a2);
+
+                            if (a2 == 0){
+                                
+
+                                document.getElementById("DonacionMecatronica").style.display = 'block';
+                                document.getElementById("DoncionSistemas").style.display = 'none';
+                                document.getElementById("DonacionAlimentos").style.display = 'none';
+                                document.getElementById("DonacionMetalurgia").style.display = 'none';
+                                document.getElementById("DonacionAmbiental").style.display = 'none';
+
+                            }else if(a2 == 1){
+
+                                document.getElementById("DonacionMecatronica").style.display = 'none';
+                                document.getElementById("DoncionSistemas").style.display = 'block';
+                                document.getElementById("DonacionAlimentos").style.display = 'none';
+                                document.getElementById("DonacionMetalurgia").style.display = 'none';
+                                document.getElementById("DonacionAmbiental").style.display = 'none';
+
+                            }else if(a2 == 2){
+
+                                document.getElementById("DonacionMecatronica").style.display = 'none';
+                                document.getElementById("DoncionSistemas").style.display = 'none';
+                                document.getElementById("DonacionAlimentos").style.display = 'block';
+                                document.getElementById("DonacionMetalurgia").style.display = 'none';
+                                document.getElementById("DonacionAmbiental").style.display = 'none';
+
+                            }else if(a2 == 3){
+
+                                document.getElementById("DonacionMecatronica").style.display = 'none';
+                                document.getElementById("DoncionSistemas").style.display = 'none';
+                                document.getElementById("DonacionAlimentos").style.display = 'none';
+                                document.getElementById("DonacionMetalurgia").style.display = 'block';
+                                document.getElementById("DonacionAmbiental").style.display = 'none';
+
+                            }else if(a2 == 4){
+
+                                document.getElementById("DonacionMecatronica").style.display = 'none';
+                                document.getElementById("DoncionSistemas").style.display = 'none';
+                                document.getElementById("DonacionAlimentos").style.display = 'none';
+                                document.getElementById("DonacionMetalurgia").style.display = 'none';
+                                document.getElementById("DonacionAmbiental").style.display = 'block';
+                            }
+                            
+                        }
+                    </script>
 
                     <p>Número de integrantes:</p>
 
 
                     <select name="num" id="numero"  class="form-control" type="text" onChange="agregarInputInt()"> 
                         <option value="1" selected>(Unicamente usted. No hace falta introducir su nombre)</option>
-                        <option value="2">1</option>
-                        <option value="3">2</option>
-                        <option value="4">3</option>
-                        <option value="5">4</option>
-                        <option value="4">5</option>
-                        <option value="5">6</option>
-                        <option value="6">7</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="4">6</option>
+                        <option value="5">7</option>
+                        <option value="6">8</option>
 
 
                     </select>
@@ -738,23 +823,19 @@ $mostrar = mysqli_fetch_array($result);
 
                         }
                     </script>
+                    <br>
                     Número de asesores:
-                    <div class="position-relative form-group">
-                        <div>
-                            <div class="custom-radio custom-control">
-                                <input type="radio" onClick="agregarInputAs()" checked="checked" id="asesor1" name="asesores" class="custom-control-input">
-                                <label class="custom-control-label" for="asesor1">1</label>
-                            </div>
-                            <div class="custom-radio custom-control">
-                                <input type="radio" onClick="agregarInputAs()" id="asesor2" name="asesores" class="custom-control-input">
-                                <label class="custom-control-label" for="asesor2">2</label>
-                            </div>
-                            <div class="custom-radio custom-control">
-                                <input type="radio" onClick="agregarInputAs()" id="asesor3" name="asesores" class="custom-control-input">
-                                <label class="custom-control-label" for="asesor3">3</label>
-                            </div>
-                        </div>
-                    </div>
+                    <select name="asesor" id="ASSESORES"  class="form-control" type="text" onChange="agregarInputAs()"> 
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    
+
+
+                    </select>
+                    
                     <div id="mostrarAss" class="position-relative form-group">
                         <p>Introduzca los nombres de los asesores</p>
                         <label for="exampleAddress" class="">Primer asesor:</label>
@@ -767,6 +848,14 @@ $mostrar = mysqli_fetch_array($result);
                     <div id="mostrarAss3" class="position-relative form-group">
                         <label for="exampleAddress" class="">Tercer asesor:</label>
                         <input name="ass3" id="exampleAddress" type="text" class="form-control">
+                    </div>
+                    <div id="mostrarAss4" class="position-relative form-group">
+                        <label for="exampleAddress" class="">Cuarto asesor:</label>
+                        <input name="ass4" id="exampleAddress" type="text" class="form-control">
+                    </div>
+                    <div id="mostrarAss5" class="position-relative form-group">
+                        <label for="exampleAddress" class="">Quinto asesor:</label>
+                        <input name="ass5" id="exampleAddress" type="text" class="form-control">
                     </div>
 
                     <script>
@@ -782,26 +871,62 @@ $mostrar = mysqli_fetch_array($result);
                             document.getElementById("mostrarAss").style.display = 'block';
                             document.getElementById("mostrarAss2").style.display = 'none';
                             document.getElementById("mostrarAss3").style.display = 'none';
+                            document.getElementById("mostrarAss4").style.display = 'none';
+                            document.getElementById("mostrarAss5").style.display = 'none';
+                            document.getElementById("DonacionMecatronica").style.display = 'none';
+                            document.getElementById("DoncionSistemas").style.display = 'none';
+                            document.getElementById("DonacionAlimentos").style.display = 'none';
+                            document.getElementById("DonacionMetalurgia").style.display = 'none';
+                            document.getElementById("DonacionAmbiental").style.display = 'none';
                         }
 
                         function agregarInputAs() {
-                            if (document.getElementById("asesor1").checked) {
+                            var ass = document.getElementById("ASSESORES").selectedIndex;
+                            //window.alert(ass);
+                            if (ass == 0) {
+                                
                                 document.getElementById("mostrarAss").style.display = 'block';
                                 document.getElementById("mostrarAss2").style.display = 'none';
                                 document.getElementById("mostrarAss3").style.display = 'none';
-                            } else if (document.getElementById("asesor2").checked) {
+                                document.getElementById("mostrarAss4").style.display = 'none';
+                                document.getElementById("mostrarAss5").style.display = 'none';
+                                
+                            } else if (ass == 1) {
+                                
                                 document.getElementById("mostrarAss").style.display = 'block';
                                 document.getElementById("mostrarAss2").style.display = 'block';
                                 document.getElementById("mostrarAss3").style.display = 'none';
-                            } else if (document.getElementById("asesor3").checked) {
+                                document.getElementById("mostrarAss4").style.display = 'none';
+                                document.getElementById("mostrarAss5").style.display = 'none';
+
+                            } else if (ass == 2) {
+
                                 document.getElementById("mostrarAss").style.display = 'block';
                                 document.getElementById("mostrarAss2").style.display = 'block';
                                 document.getElementById("mostrarAss3").style.display = 'block';
+                                document.getElementById("mostrarAss4").style.display = 'none';
+                                document.getElementById("mostrarAss5").style.display = 'none';
+
+                            }else if (ass == 3) {
+
+                                document.getElementById("mostrarAss").style.display = 'block';
+                                document.getElementById("mostrarAss2").style.display = 'block';
+                                document.getElementById("mostrarAss3").style.display = 'block';
+                                document.getElementById("mostrarAss4").style.display = 'block';
+                                document.getElementById("mostrarAss5").style.display = 'none';
+
+                            }else if (ass == 4) {
+
+                                document.getElementById("mostrarAss").style.display = 'block';
+                                document.getElementById("mostrarAss2").style.display = 'block';
+                                document.getElementById("mostrarAss3").style.display = 'block';
+                                document.getElementById("mostrarAss4").style.display = 'block';
+                                document.getElementById("mostrarAss5").style.display = 'block';
                             }
                         }
                     </script>
 
-                    <p>Suba el documento en PDF sin exceder los 2MB</p>
+                    <p>subir la portada de tu trabajo</p>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Archivo</label> <input type="file" id="exampleAddress" name="archivo1"></div>
                 </div>
 

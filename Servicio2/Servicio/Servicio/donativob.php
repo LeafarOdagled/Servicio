@@ -497,7 +497,8 @@ $mostrar = mysqli_fetch_array($result);
                                                             <input type="hidden" name="fechae" value="' . $mostrardb['Fecha'] . '">
                                                             <input type="hidden" name="fechaa" value="' . $mostrardb['FechaAceptado'] . '">
                                                             <input type="hidden" name="ISBN" value="' . $mostrardb['ISBN'] . '">
-                                                            <input type="hidden" name="pie" value="' . $mostrardb['Pie'] . '">
+                                                            <input type="hidden" name="anio" value="' . $mostrardb['anio'] . '">
+                                                            <input type="hidden" name="editorial" value="' . $mostrardb['editorial'] . '">
                                                             <input type="hidden" name="titulo" value="' . $mostrardb['Titulo'] . '">
                                                             <input type="hidden" name="autor" value="' . $mostrardb['Autor'] . '">
 
@@ -597,8 +598,9 @@ $mostrar = mysqli_fetch_array($result);
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Titulo</label><input name="titulo" id="exampleAddress" type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Autor</label><input name="autor" id="exampleAddress" type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">ISBN</label><input name="isbn" id="exampleAddress" type="text" class="form-control"></div>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Pie de imprenta</label><input name="pie" id="exampleAddress" type="text" class="form-control"></div>
-                    <p>Sube una foto del material a donar para validar si cumple con las caracteristicas solicitadas </p>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Año de publicación</label><input name="anio" id="exampleAddress" type="text" class="form-control"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">Editorial</label><input name="editorial" id="exampleAddress" type="text" class="form-control"></div>
+                    <p>Sube un pdf que contenga la portada y la hoja legal para validar si cumple con las caracteristicas solicitadas </p>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">archivo</label> <input type="file" accept="image/*" id="exampleAddress" name="archivo1"></div>
                 </div>
 

@@ -71,26 +71,25 @@ $mostrar = mysqli_fetch_array($result);
                 <div class="app-header-left">
                     
                     <ul class="header-menu nav">
-                        <li class="nav-item">
+                    <li class="nav-item">
                         <?php echo '<a href="principalAdmin.php?UsuarioAdmin='.$UsuarioAdmin.'" class="mm-active nav-link">
                                     <i class="nav-link-icon fa pe-7s-home"> </i>
                                     Home</a>' ?>
                         </li>
                         <li class="nav-item">
                         <?php echo '<a href="PrincipalNoAdeudo.php?UsuarioAdmin='.$UsuarioAdmin.'" class="mm-active nav-link">
-                                    <i class="pe-7s-notebook"> </i>
+                                    <i class="pe-7s-news-paper "> </i>
                                     Solicitud de no adeudo</a>' ?>
                         </li>
                         <li class="btn-group nav-item">
                         <?php echo '<a href="PrincipalAcademico.php?UsuarioAdmin='.$UsuarioAdmin.'" class="mm-active nav-link">
                                     <i class="pe-7s-news-paper "> </i>
                                     Donativo Academico</a>' ?>
-                        </li>    
+                        </li>
                         <li class="dropdown nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Settings
-                            </a>
+                        <?php echo '<a href="PrincipalBibleografico.php?UsuarioAdmin='.$UsuarioAdmin.'" class="mm-active nav-link">
+                                    <i class="pe-7s-notebook"> </i>
+                                    Donativo bibleografico</a>' ?>
                         </li>
                         <li class="dropdown nav-item">
                             <a href="javascript:void(0);" class="nav-link">
@@ -223,7 +222,8 @@ $mostrar = mysqli_fetch_array($result);
                                                                                     <tr>
                                                                                         <th scope="col" class="text-center">Programa académico del donador</th>
                                                                                         <th scope="col" class="text-center">ISBN</th>
-                                                                                        <th scope="col" class="text-center">Pie</th>
+                                                                                        <th scope="col" class="text-center">año</th>
+                                                                                        <th scope="col" class="text-center">Editorial</th>
                                                                                         <th scope="col" class="text-center">Fecha</th>
                                                                                     </tr>
                                                                                 </thead>
@@ -243,10 +243,16 @@ $mostrar = mysqli_fetch_array($result);
                                                                                             </td>
                                                                                             <td class="text-center">
                                                                                                 <div>
-                                                                                                    <div class="widget-heading">'.$mostrardb['Pie'].'</div>
+                                                                                                    <div class="widget-heading">'.$mostrardb['anio'].'</div>
 
                                                                                                 </div>
                                                                                             </td>
+                                                                                            <td class="text-center">
+                                                                                            <div>
+                                                                                                <div class="widget-heading">'.$mostrardb['editorial'].'</div>
+
+                                                                                            </div>
+                                                                                        </td>
                                                                                             <td class="text-center">
                                                                                                 <div>
                                                                                                     <div class="widget-heading">'.$mostrardb['Fecha'].'</div>

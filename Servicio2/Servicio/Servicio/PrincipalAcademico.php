@@ -71,7 +71,7 @@ $mostrar = mysqli_fetch_array($result);
                 <div class="app-header-left">
                     
                     <ul class="header-menu nav">
-                        <li class="nav-item">
+                    <li class="nav-item">
                         <?php echo '<a href="principalAdmin.php?UsuarioAdmin='.$UsuarioAdmin.'" class="mm-active nav-link">
                                     <i class="nav-link-icon fa pe-7s-home"> </i>
                                     Home</a>' ?>
@@ -81,16 +81,15 @@ $mostrar = mysqli_fetch_array($result);
                                     <i class="pe-7s-news-paper "> </i>
                                     Solicitud de no adeudo</a>' ?>
                         </li>
+                        <li class="btn-group nav-item">
+                        <?php echo '<a href="PrincipalAcademico.php?UsuarioAdmin='.$UsuarioAdmin.'" class="mm-active nav-link">
+                                    <i class="pe-7s-news-paper "> </i>
+                                    Donativo Academico</a>' ?>
+                        </li>
                         <li class="dropdown nav-item">
                         <?php echo '<a href="PrincipalBibleografico.php?UsuarioAdmin='.$UsuarioAdmin.'" class="mm-active nav-link">
                                     <i class="pe-7s-notebook"> </i>
                                     Donativo bibleografico</a>' ?>
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Settings
-                            </a>
                         </li>
                         <li class="dropdown nav-item">
                             <a href="javascript:void(0);" class="nav-link">

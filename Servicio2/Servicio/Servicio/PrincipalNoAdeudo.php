@@ -76,6 +76,11 @@ $mostrar = mysqli_fetch_array($result);
                                     <i class="nav-link-icon fa pe-7s-home"> </i>
                                     Home</a>' ?>
                         </li>
+                        <li class="nav-item">
+                        <?php echo '<a href="PrincipalNoAdeudo.php?UsuarioAdmin='.$UsuarioAdmin.'" class="mm-active nav-link">
+                                    <i class="pe-7s-news-paper "> </i>
+                                    Solicitud de no adeudo</a>' ?>
+                        </li>
                         <li class="btn-group nav-item">
                         <?php echo '<a href="PrincipalAcademico.php?UsuarioAdmin='.$UsuarioAdmin.'" class="mm-active nav-link">
                                     <i class="pe-7s-news-paper "> </i>
@@ -83,14 +88,8 @@ $mostrar = mysqli_fetch_array($result);
                         </li>
                         <li class="dropdown nav-item">
                         <?php echo '<a href="PrincipalBibleografico.php?UsuarioAdmin='.$UsuarioAdmin.'" class="mm-active nav-link">
-                                    <i class="pe-7s-notebook "> </i>
+                                    <i class="pe-7s-notebook"> </i>
                                     Donativo bibleografico</a>' ?>
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Settings
-                            </a>
                         </li>
                         <li class="dropdown nav-item">
                             <a href="javascript:void(0);" class="nav-link">
@@ -216,7 +215,7 @@ $mostrar = mysqli_fetch_array($result);
                                                                                     <tr>
                                                                                         <th scope="col" class="text-center">Programa académico</th>
                                                                                         <th scope="col" class="text-center">Fecha de solicitud</th>
-                                                                                        <th scope="col" class="text-center">Fecha de aceptación</th>
+                                                                                        <th scope="col" class="text-center">Boleta</th>
                                                                                         <th scope="col" class="text-center">Correo</th>
                                                                                     </tr>
                                                                                 </thead>
@@ -236,7 +235,7 @@ $mostrar = mysqli_fetch_array($result);
                                                                                             </td>
                                                                                             <td class="text-center">
                                                                                                 <div>
-                                                                                                    <div class="widget-heading">'.$mostrarconstancia['FechaAcepta'].'</div>
+                                                                                                    <div class="widget-heading">'.$mostrarnombre['Boleta'].'</div>
 
                                                                                                 </div>
                                                                                             </td>
