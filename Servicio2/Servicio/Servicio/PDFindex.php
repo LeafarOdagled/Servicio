@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <form action="prueba.php" method="POST" enctype="multipart/form-data">
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
         <h2>Subir archivo</h2>
         <input type="file" name="archivo1">
         <p class="center"><input type="submit" value="Subir archivo"></p>

@@ -19,7 +19,6 @@ $locacion="donativob.php";
 
 if($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
     if($row['Contra'] ==  $pass){
-        
         $_SESSION['Usuario'] = $usuario;
         $fecha=date('y-m-j');
         $fechaAceptado=null;
@@ -30,6 +29,37 @@ if($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
         $result2= mysqli_query($co,$consultar) or die('No consulta');
         
         header("Location:donativob.php?numerobol=".$usuario."");
+
+
+$directorio = "PdfBibliografico/";
+
+$archivo = $directorio . basename($_FILES["archivoB"]["name"]);
+
+$tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
+
+
+
+//var_dump($size);
+
+    //validando tamaño del archivo
+    $size = $_FILES["archivoB"]["size"];
+
+    if($size > 500000){
+        echo "El archivo tiene que ser menor a 500kb";
+    }else{
+
+        
+        
+            // se validó el archivo correctamente
+            if(move_uploaded_file($_FILES["archivoB"]["tmp_name"], $archivo)){
+                echo "El archivo se subió correctamente";
+
+                
+            }else{
+                echo "Hubo un error en la subida del archivo";
+            }
+        
+    }
     }else{
         echo "contraseña o boleta invalida";
         

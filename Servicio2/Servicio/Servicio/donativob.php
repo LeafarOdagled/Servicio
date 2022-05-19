@@ -584,7 +584,7 @@ $mostrar = mysqli_fetch_array($result);
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="" method="POST" action="BibliograficoD.php">
+            <form class="" method="POST" action="BibliograficoD.php" enctype="multipart/form-data">
                 <div class="modal-body">
                     <p>Ingrese los datos que se le solicitan</p>
                     <div class="form-row">
@@ -601,7 +601,7 @@ $mostrar = mysqli_fetch_array($result);
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Año de publicación</label><input name="anio" id="exampleAddress" type="text" class="form-control"></div>
                     <div class="position-relative form-group"><label for="exampleAddress" class="">Editorial</label><input name="editorial" id="exampleAddress" type="text" class="form-control"></div>
                     <p>Sube un pdf que contenga la portada y la hoja legal para validar si cumple con las caracteristicas solicitadas </p>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">archivo</label> <input type="file" accept="image/*" id="exampleAddress" name="archivo1"></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" class="">archivo</label> <input type="file" " id="exampleAddress" name="archivoB" required></div>
                 </div>
 
 
