@@ -25,7 +25,7 @@ if($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
 
 
         $directorio = "PdfBibliografico/";
-        $archivo = $directorio .basename($_FILES["ArchivoB"]["name"]);
+        $archivo = $directorio .basename($_FILES["archivoB"]["name"]);
         $tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
 
 
@@ -37,11 +37,6 @@ if($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
         header("Location:donativob.php?numerobol=".$usuario."");
 
 
-$directorio = "PdfBibliografico/";
-
-$archivo = $directorio . basename($_FILES["archivoB"]["name"]);
-
-$tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
 
 
 
