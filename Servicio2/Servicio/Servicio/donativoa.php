@@ -583,7 +583,7 @@ $mostrar = mysqli_fetch_array($result);
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="" method="POST" action="AcademicoD.php">
+            <form class="" method="POST" action="AcademicoD.php" enctype="multipart/form-data">
                 <div class="modal-body">
                     <p>Ingrese los datos que se le solicitan</p>
                     <div class="form-row">
@@ -940,14 +940,13 @@ $mostrar = mysqli_fetch_array($result);
                     </script>
 
                     <p>Subir la portada de tu trabajo</p>
-                    <div class="position-relative form-group"><label for="exampleAddress" class="">Archivo</label> <input type="file" id="exampleAddress" name="archivoA" required
-                    ></div>
+                    <div class="position-relative form-group"><label for="exampleAddress" >Archivo</label> <input type="file" id="exampleAddress" name="archivoA" required></div>
                 </div>
 
 
 
                 <div class="modal-footer">
-                    <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success" enctype="multipart/form-data">Donar</button>
+                    <button type="submit" class="mb-2 mr-2 btn-transition btn btn-outline-success" >Donar</button>
                     <button type="button" class="mb-2 mr-2 btn-transition btn btn-outline-danger" data-dismiss="modal" class="mt-2 btn btn-primary">Cerrar</a>
                 </div>
             </form>
