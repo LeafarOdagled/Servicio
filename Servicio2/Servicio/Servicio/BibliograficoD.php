@@ -23,8 +23,14 @@ if($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){
         $fecha=date('y-m-j');
         $fechaAceptado=null;
 
-        $consultar="INSERT INTO donativo(Titulo, Autor, ISBN, anio, editorial, id_usuario, Fecha, FechaAceptado ) VALUES
-        ('".$titulo."','".$autor."', '".$ISBN."','".$anio."','".$editorial."', '".$row['id_usuario']."', '".$fecha."','".$fechaAceptado."');"; 
+
+        $directorio = "PdfBibliografico/";
+        $archivo = $directorio .basename($_FILES["ArchivoB"]["name"]);
+        $tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
+
+
+        $consultar="INSERT INTO donativo(Titulo, Autor, ISBN, anio, editorial, id_usuario, Fecha, FechaAceptado, ArchivoB ) VALUES
+        ('".$titulo."','".$autor."', '".$ISBN."','".$anio."','".$editorial."', '".$row['id_usuario']."', '".$fecha."','".$fechaAceptado."','".$archivo."');"; 
         
         $result2= mysqli_query($co,$consultar) or die('No consulta');
         
@@ -41,27 +47,7 @@ $tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
 
 //var_dump($size);
 
-    //validando tamaño del archivo
-    $size = $_FILES["archivoB"]["size"];
 
-    if($size > 500000){
-        echo "El archivo tiene que ser menor a 500kb";
-    }else{
-
-        
-        
-            // se validó el archivo correctamente
-            if(move_uploaded_file($_FILES["archivoB"]["tmp_name"], $archivo)){
-                echo "El archivo se subió correctamente";
-
-                
-            }else{
-                echo "Hubo un error en la subida del archivo";
-            }
-        
-    }
-    }else{
-        echo "contraseña o boleta invalida";
         
     }
 }

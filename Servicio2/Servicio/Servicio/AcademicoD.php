@@ -36,6 +36,12 @@ $locacion = "donativoa.php";
 $fechaExpide = date('y-m-j');
 $fechaAcepta = null;
 $nulo = 'NULL';
+
+$directorio = "PdfAcademico/";
+$archivo = $directorio .basename($_FILES["ArchivoA"]["name"]);
+$tipoArchivo = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
+
+
 if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     if ($row['Contra'] ==  $pass) {
 
@@ -43,8 +49,8 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 
 
 
-        $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-        ('" . $tipo . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+        $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado, ArchivoA ) VALUES
+        ('" . $tipo . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
 
         $_SESSION['Usuario'] = $usuario;
         $nombreu = $row['Nombre'] . ' ' . $row['APaterno'] . ' ' . $row['AMaterno'];
@@ -74,26 +80,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                     if ($ass2 == '') //si entra aqui solo hay un assesor y solo un integrante
                                                     {//un assesor
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dmeca . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dmeca . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                     }else //si entra aqui es un integante y dos asesores
                                                     {
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dmeca . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dmeca . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                     }
                                                 }else//si entra aqui es un integrante y 3 asesores  
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dmeca . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dmeca . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                 }
                                             }else
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmeca . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmeca . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmeca . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmeca . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
 
                                     
@@ -108,26 +114,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                     if ($ass2 == '') //
                                                     {//un assesor
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }else //
                                                     {
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                     }
                                                 }else//
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }
                                             }else
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                         }
                                     }
                                 } else//3 integrantes
@@ -141,26 +147,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                 if ($ass2 == '') //
                                                 {//un assesor
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                 }else //
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                 }
                                             }else//
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                     }
                                 }
                             } else //4 integrantes
@@ -174,26 +180,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                             if ($ass2 == '') //
                                             {//un assesor
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }else //
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else//
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                     }
                                 }else
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                 }
                             }
                         } else//5 integrantes
@@ -207,26 +213,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                         if ($ass2 == '') //
                                         {//un assesor
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                         }else //
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else//
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                     }
                                 }else
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }
                     } else//6 integrantes
@@ -240,26 +246,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                     if ($ass2 == '') //
                                     {//un assesor
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                     }else //
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                     }
                                 }else//
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                             }
                         }else
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                         }
                     }
                 } else//7 integrantes
@@ -273,26 +279,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                 if ($ass2 == '') //
                                 {//un assesor
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                 }else //
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else//
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                             }
                         }else
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }else
                     {
                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                     }
                 }
             } else//8 integrantes
@@ -307,26 +313,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                             if ($ass2 == '') //
                             {//un assesor
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }else //
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else//
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }else
                     {
                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                        ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                     }
                 }else
                 {
                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                    ('" . $Dmeca . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                 }
             }
         }
@@ -355,26 +361,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                     if ($ass2 == '') //si entra aqui solo hay un assesor y solo un integrante
                                                     {//un assesor
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dsiste . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dsiste . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                     }else //si entra aqui es un integante y dos asesores
                                                     {
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dsiste . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dsiste . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }
                                                 }else//si entra aqui es un integrante y 3 asesores  
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dsiste . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dsiste . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }
                                             }else
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dsiste . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dsiste . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
 
                                     
@@ -389,26 +395,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                     if ($ass2 == '') //
                                                     {//un assesor
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }else //
                                                     {
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                     }
                                                 }else//
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }
                                             }else
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }
                                 } else//3 integrantes
@@ -422,26 +428,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                 if ($ass2 == '') //
                                                 {//un assesor
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                 }else //
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                 }
                                             }else//
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }
                             } else //4 integrantes
@@ -455,26 +461,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                             if ($ass2 == '') //
                                             {//un assesor
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                             }else //
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else//
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }else
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                 }
                             }
                         } else//5 integrantes
@@ -488,26 +494,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                         if ($ass2 == '') //
                                         {//un assesor
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }else //
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                         }
                                     }else//
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }else
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }
                     } else//6 integrantes
@@ -521,26 +527,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                     if ($ass2 == '') //
                                     {//un assesor
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }else //
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }else//
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                         }
                     }
                 } else//7 integrantes
@@ -554,26 +560,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                 if ($ass2 == '') //
                                 {//un assesor
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }else //
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else//
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }else
                     {
                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                     }
                 }
             } else//8 integrantes
@@ -588,26 +594,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                             if ($ass2 == '') //
                             {//un assesor
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }else //
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else//
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }else
                     {
                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                        ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                     }
                 }else
                 {
                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                    ('" . $Dsiste . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                 }
             }
         }
@@ -636,26 +642,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                     if ($ass2 == '') //si entra aqui solo hay un assesor y solo un integrante
                                                     {//un assesor
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dali . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dali . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }else //si entra aqui es un integante y dos asesores
                                                     {
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dali . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dali . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }
                                                 }else//si entra aqui es un integrante y 3 asesores  
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dali . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dali . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }
                                             }else
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dali . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dali . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dali . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dali . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
 
                                     
@@ -670,26 +676,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                     if ($ass2 == '') //
                                                     {//un assesor
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }else //
                                                     {
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }
                                                 }else//
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }
                                             }else
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                         }
                                     }
                                 } else//3 integrantes
@@ -703,26 +709,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                 if ($ass2 == '') //
                                                 {//un assesor
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }else //
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                 }
                                             }else//
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                         }
                                     }else
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }
                             } else //4 integrantes
@@ -736,26 +742,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                             if ($ass2 == '') //
                                             {//un assesor
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }else //
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else//
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }else
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }
                         } else//5 integrantes
@@ -769,26 +775,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                         if ($ass2 == '') //
                                         {//un assesor
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }else //
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else//
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                     }
                                 }else
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }
                     } else//6 integrantes
@@ -802,26 +808,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                     if ($ass2 == '') //
                                     {//un assesor
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }else //
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }else//
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }
                 } else//7 integrantes
@@ -835,26 +841,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                 if ($ass2 == '') //
                                 {//un assesor
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }else //
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                 }
                             }else//
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }else
                     {
                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                     }
                 }
             } else//8 integrantes
@@ -869,26 +875,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                             if ($ass2 == '') //
                             {//un assesor
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }else //
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "');";
                             }
                         }else//
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }else
                     {
                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                        ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                     }
                 }else
                 {
                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                    ('" . $Dali . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                 }
             }
         }
@@ -917,26 +923,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                     if ($ass2 == '') //si entra aqui solo hay un assesor y solo un integrante
                                                     {//un assesor
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }else //si entra aqui es un integante y dos asesores
                                                     {
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }
                                                 }else//si entra aqui es un integrante y 3 asesores  
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }
                                             }else
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmetal . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
 
                                     
@@ -951,26 +957,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                     if ($ass2 == '') //
                                                     {//un assesor
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                     }else //
                                                     {
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }
                                                 }else//
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                 }
                                             }else
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }
                                 } else//3 integrantes
@@ -984,26 +990,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                 if ($ass2 == '') //
                                                 {//un assesor
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                                 }else //
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }
                                             }else//
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }
                             } else //4 integrantes
@@ -1017,26 +1023,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                             if ($ass2 == '') //
                                             {//un assesor
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                             }else //
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                             }
                                         }else//
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }else
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }
                         } else//5 integrantes
@@ -1050,26 +1056,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                         if ($ass2 == '') //
                                         {//un assesor
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }else //
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else//
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }else
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                 }
                             }else
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }
                     } else//6 integrantes
@@ -1083,26 +1089,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                     if ($ass2 == '') //
                                     {//un assesor
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }else //
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                     }
                                 }else//
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }
                 } else//7 integrantes
@@ -1116,26 +1122,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                 if ($ass2 == '') //
                                 {//un assesor
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }else //
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else//
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }else
                     {
                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                     }
                 }
             } else//8 integrantes
@@ -1150,26 +1156,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                             if ($ass2 == '') //
                             {//un assesor
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }else //
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else//
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }else
                     {
                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                        ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                     }
                 }else
                 {
                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                    ('" . $Dmetal . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                 }
             }
         }
@@ -1198,26 +1204,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                     if ($ass2 == '') //si entra aqui solo hay un assesor y solo un integrante
                                                     {//un assesor
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dambient . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dambient . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }else //si entra aqui es un integante y dos asesores
                                                     {
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dambient . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dambient . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }
                                                 }else//si entra aqui es un integrante y 3 asesores  
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dambient . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dambient . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }
                                             }else
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dambient . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dambient . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dambient . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dambient . "','" . $nombreu . "','" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
 
                                     
@@ -1232,26 +1238,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                     if ($ass2 == '') //
                                                     {//un assesor
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }else //
                                                     {
                                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                     }
                                                 }else//
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }
                                             }else
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }
                                 } else//3 integrantes
@@ -1265,26 +1271,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                                 if ($ass2 == '') //
                                                 {//un assesor
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }else //
                                                 {
                                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                                 }
                                             }else//
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }
                             } else //4 integrantes
@@ -1298,26 +1304,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                             if ($ass2 == '') //
                                             {//un assesor
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }else //
                                             {
                                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                             }
                                         }else//
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                         }
                                     }else
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }else
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }
                         } else//5 integrantes
@@ -1331,26 +1337,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                         if ($ass2 == '') //
                                         {//un assesor
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                         }else //
                                         {
                                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                         }
                                     }else//
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }
                                 }else
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                 }
                             }else
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }
                     } else//6 integrantes
@@ -1364,26 +1370,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                     if ($ass2 == '') //
                                     {//un assesor
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                     }else //
                                     {
                                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                     }
                                 }else//
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                                 }
                             }else
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                             }
                         }else
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $nulo . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }
                 } else//7 integrantes
@@ -1397,26 +1403,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                 if ($ass2 == '') //
                                 {//un assesor
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }else //
                                 {
                                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                                 }
                             }else//
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }else
                     {
                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $nulo . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                     }
                 }
             } else//8 integrantes
@@ -1431,26 +1437,26 @@ if ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                             if ($ass2 == '') //
                             {//un assesor
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                             }else //
                             {
                                 $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                                ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $nulo . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                             }
                         }else//
                         {
                             $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                            ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $nulo . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                         }
                     }else
                     {
                         $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                        ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $nulo . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' , '" . $archivo . "');";
                     }
                 }else
                 {
                     $consultar = "INSERT INTO donativoa (tipo, integrante, integrante2, integrante3, integrante4, integrante5, integrante6, integrante7, integrante8, asesor1, asesor2, asesor3, asesor4, asesor5, id_usuario, fechaExpide, fechaAceptado ) VALUES
-                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "' );";
+                    ('" . $Dambient . "','" . $nombreu . "','" . $i1 . "', '" . $i2 . "', '" . $i3 . "', '" . $i4 . "', '" . $i5 . "', '" . $i6 . "', '" . $i7 . "', '" . $ass1 . "', '" . $ass2 . "', '" . $ass3 . "', '" . $ass4 . "', '" . $ass5 . "', '" . $row['id_usuario'] . "', '" . $fechaExpide . "', '" . $fechaAcepta . "', '" . $archivo . "' );";
                 }
             }
         }

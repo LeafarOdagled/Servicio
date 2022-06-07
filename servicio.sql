@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-05-2022 a las 22:54:03
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.2
+-- Tiempo de generación: 07-06-2022 a las 04:19:08
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -65,15 +65,17 @@ CREATE TABLE `donativo` (
   `id_usuario` int(11) NOT NULL,
   `nombreB` varchar(50) NOT NULL DEFAULT 'Donativo Bibliográfico ',
   `estadoB` varchar(25) NOT NULL DEFAULT 'Pendiente',
-  `ComentarioB` varchar(500) NOT NULL
+  `ComentarioB` varchar(500) NOT NULL,
+  `ArchivoB` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `donativo`
 --
 
-INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `anio`, `editorial`, `Fecha`, `FechaAceptado`, `id_usuario`, `nombreB`, `estadoB`, `ComentarioB`) VALUES
-(14, 'wasd', 'wasd', 'wasd', NULL, NULL, '2022-03-02', '2022-04-16', 1, 'Donativo Bibliográfico ', 'Aceptado', 'hijoesuputamadre');
+INSERT INTO `donativo` (`ID_DonB`, `Titulo`, `Autor`, `ISBN`, `anio`, `editorial`, `Fecha`, `FechaAceptado`, `id_usuario`, `nombreB`, `estadoB`, `ComentarioB`, `ArchivoB`) VALUES
+(14, 'wasd', 'wasd', 'wasd', NULL, NULL, '2022-03-02', '2022-04-16', 1, 'Donativo Bibliográfico ', 'Aceptado', 'hijoesuputamadre', ''),
+(23, 'asdasdasd', 'asdasdad', 'asdasdasd', 0, 'asdasdasd', '2022-06-07', '0000-00-00', 1, 'Donativo Bibliográfico ', 'Pendiente', '', 'PdfBibliografico/');
 
 -- --------------------------------------------------------
 
@@ -102,17 +104,18 @@ CREATE TABLE `donativoa` (
   `fechaAceptado` date NOT NULL,
   `nombreA` varchar(50) NOT NULL DEFAULT 'Donativo Académico ',
   `estadoA` varchar(25) NOT NULL DEFAULT 'Pendiente',
-  `ComentarioA` varchar(500) NOT NULL
+  `ComentarioA` varchar(500) NOT NULL,
+  `ArchivoA` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `donativoa`
 --
 
-INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `integrante4`, `integrante5`, `integrante6`, `integrante7`, `integrante8`, `asesor1`, `asesor2`, `asesor3`, `asesor4`, `asesor5`, `id_usuario`, `fechaExpide`, `fechaAceptado`, `nombreA`, `estadoA`, `ComentarioA`) VALUES
-(17, '', 'Rafael Delgado Calzada', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'asd', 'NULL', 'NULL', 'NULL', 'NULL', 1, '2022-05-12', '0000-00-00', 'Donativo Académico ', 'Pendiente', ''),
-(18, 'TT', 'Rafael Delgado Calzada', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'asdas', 'NULL', 'NULL', 'NULL', 'NULL', 1, '2022-05-12', '0000-00-00', 'Donativo Académico ', 'Pendiente', ''),
-(19, 'Tesis', 'Rafael Delgado Calzada', 'dasd', 'weqeq', 'eqw', 'NULL', 'NULL', 'NULL', 'NULL', 'sad', 'asda', 'asdasd', 'NULL', 'NULL', 1, '2022-05-19', '0000-00-00', 'Donativo Académico ', 'Pendiente', '');
+INSERT INTO `donativoa` (`ID_DonA`, `tipo`, `integrante`, `integrante2`, `integrante3`, `integrante4`, `integrante5`, `integrante6`, `integrante7`, `integrante8`, `asesor1`, `asesor2`, `asesor3`, `asesor4`, `asesor5`, `id_usuario`, `fechaExpide`, `fechaAceptado`, `nombreA`, `estadoA`, `ComentarioA`, `ArchivoA`) VALUES
+(17, '', 'Rafael Delgado Calzada', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'asd', 'NULL', 'NULL', 'NULL', 'NULL', 1, '2022-05-12', '0000-00-00', 'Donativo Académico ', 'Pendiente', '', '0'),
+(18, 'TT', 'Rafael Delgado Calzada', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'asdas', 'NULL', 'NULL', 'NULL', 'NULL', 1, '2022-05-12', '0000-00-00', 'Donativo Académico ', 'Pendiente', '', '0'),
+(19, 'Tesis', 'Rafael Delgado Calzada', 'dasd', 'weqeq', 'eqw', 'NULL', 'NULL', 'NULL', 'NULL', 'sad', 'asda', 'asdasd', 'NULL', 'NULL', 1, '2022-05-19', '0000-00-00', 'Donativo Académico ', 'Pendiente', '', '0');
 
 -- --------------------------------------------------------
 
@@ -291,7 +294,7 @@ ALTER TABLE `constancia`
 -- AUTO_INCREMENT de la tabla `donativo`
 --
 ALTER TABLE `donativo`
-  MODIFY `ID_DonB` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID_DonB` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `donativoa`

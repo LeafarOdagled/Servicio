@@ -358,6 +358,8 @@ $mostrar = mysqli_fetch_array($result);
                                                                     </div>
                                                                 </div>
                                                         </td>
+                                                        <td><a href="'.$mostrarda['ArchivoA'].'"class="mb-2 mr-2 btn btn-success">Descargar</a>
+                                                         </td>
                                                     </tr>';
                                                     
                                                 }
